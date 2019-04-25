@@ -4,7 +4,7 @@
   <p>Email:</p>
      <input [(ngModel)]="loginUser.email" type="text" name="loginUser.email" placeholder="Email"/>
      <p>Password:</p>
-     <input [(ngModel)]="loginUser.password" type='text' name="loginUser.password" placeholder="Password"><br>
+     <input [(ngModel)]="loginUser.password" type='password' name="loginUser.password" placeholder="Password"><br>
      <!-- <button [routerLink]="['/user/:id']">Login</button>&nbsp;&nbsp; -->
      
      <input type="submit" value="Login"/>
@@ -17,3 +17,5 @@
 <div *ngIf='errors.length > 0' style='color:red;'>
   <h6 *ngFor='let error of errors'>{{error}}</h6>
 </div>
+
+

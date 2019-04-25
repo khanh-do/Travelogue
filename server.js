@@ -24,6 +24,10 @@ app.use(session({
 require('./server/config/mongoose');
 require('./server/config/routes')(app);
 
+app.all("*", (req,res,next) => {
+    res.sendFile(path.resolve("./public/dist/public/index.html"))
+  });
+
 app.listen(8000, function(){
     console.log('listening at port 8000');
 })
