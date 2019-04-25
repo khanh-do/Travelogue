@@ -41,7 +41,7 @@ const LocationSchema = new mongoose.Schema({
         trim: true, 
         minlength: 2 
     },
-    locations: [AttractionSchema]
+    attractions: [AttractionSchema]
 },{ timestamps: true })
 
 const UserSchema = new mongoose.Schema({
