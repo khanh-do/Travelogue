@@ -1,4 +1,4 @@
-var quotes = require('../controllers/users');
+let users = require('../controllers/users');
 
 module.exports = function(app){
     app.get('/', function (req, res) {
@@ -6,6 +6,10 @@ module.exports = function(app){
         users.index(req, res) ;
     })
 
+    app.post('/login', function (req, res) {
+        console.log("#4 In routes post /login")
+        users.login_user(req, res);
+    })
     // Below is example of post method
     // app.post('/btquote', function (req, res) {
     //     quotes.btquote(req, res);
