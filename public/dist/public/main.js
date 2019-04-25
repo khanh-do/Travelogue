@@ -37,11 +37,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+
+
 
 
 
 
 var routes = [
+    { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_4__["RegisterComponent"] },
+    { path: 'user/:username', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"] },
     { path: '', component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -137,6 +143,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+
+
 
 
 
@@ -154,6 +164,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_8__["LoginComponent"],
+                _register_register_component__WEBPACK_IMPORTED_MODULE_9__["RegisterComponent"],
+                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_10__["DashboardComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -166,6 +178,62 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  dashboard works!\n</p>\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/dashboard/dashboard.component.ts ***!
+  \**************************************************/
+/*! exports provided: DashboardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var DashboardComponent = /** @class */ (function () {
+    function DashboardComponent() {
+    }
+    DashboardComponent.prototype.ngOnInit = function () {
+    };
+    DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-dashboard',
+            template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/dashboard/dashboard.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
 
 
@@ -195,6 +263,10 @@ var HttpService = /** @class */ (function () {
     HttpService.prototype.loginThisUser = function (user) {
         console.log("#3 in http.service.ts user: ", user);
         return this._http.post('/login', user);
+    };
+    HttpService.prototype.registerThisUser = function (user) {
+        console.log("#3 in http.service.ts user: ", user);
+        return this._http.post('/create', user);
     };
     HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -227,7 +299,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Login:</h3>\n<div class=\"form\">\n  <form (submit)=\"onLogin()\">\n  <p>Email:</p>\n     <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\"/>\n     <p>Password:</p>\n     <input [(ngModel)]=\"loginUser.password\" type='text' name=\"loginUser.password\" placeholder=\"Password\"><br>\n     <!-- <button [routerLink]=\"['/user/:id']\">Login</button>&nbsp;&nbsp; -->\n     \n     <input type=\"submit\" value=\"Login\"/>\n\n     <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\n\n  </form>\n</div>\n\n<div *ngIf='errors.length > 0' style='color:red;'>\n  <h6 *ngFor='let error of errors'>{{error}}</h6>\n</div>\n"
+module.exports = "<h3>Login:</h3>\n<div class=\"form\">\n  <form (submit)=\"onLogin()\">\n  <p>Email:</p>\n     <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\"/>\n     <p>Password:</p>\n     <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\"><br>\n     <!-- <button [routerLink]=\"['/user/:id']\">Login</button>&nbsp;&nbsp; -->\n     \n     <input type=\"submit\" value=\"Login\"/>\n\n     <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\n\n  </form>\n</div>\n\n<div *ngIf='errors.length > 0' style='color:red;'>\n  <h6 *ngFor='let error of errors'>{{error}}</h6>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -306,6 +378,108 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/register/register.component.css":
+/*!*************************************************!*\
+  !*** ./src/app/register/register.component.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlZ2lzdGVyL3JlZ2lzdGVyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/register/register.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/register/register.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h3>Register:</h3>\n<div class=\"form\">\n  <form (submit)=\"onRegister()\">\n      <p>First Name:</p>\n      <input [(ngModel)]=\"registerUser.first_name\" type=\"text\" name=\"registerUser.first_name\" placeholder=\"First Name\"/>\n      <p>Last Name:</p>\n     <input [(ngModel)]=\"registerUser.last_name\" type=\"text\" name=\"registerUser.last_name\" placeholder=\"Last Name\"/>\n     <p>Username:</p>\n     <input [(ngModel)]=\"registerUser.username\" type=\"text\" name=\"registerUser.username\" placeholder=\"Username\"/>\n     <p>Email:</p>\n     <input [(ngModel)]=\"registerUser.email\" type=\"text\" name=\"registerUser.email\" placeholder=\"Email\"/>\n     <p>Password:</p>\n     <input [(ngModel)]=\"registerUser.password\" type='password' name=\"registerUser.password\" placeholder=\"Password\"><br>\n     <p>Confirm Password:</p>\n     <input [(ngModel)]=\"register.confirm_pass\" type=\"password\" name=\"register.confirm_pass\" placeholder=\"Confirm Password\"/>\n     <br>\n     <br>\n     <input type=\"submit\" value=\"Register\"/>\n\n  </form>\n</div>\n\n<div *ngIf='errors.length > 0' style='color:red;'>\n  <h6 *ngFor='let error of errors'>{{error}}</h6>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/register/register.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/register/register.component.ts ***!
+  \************************************************/
+/*! exports provided: RegisterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterComponent", function() { return RegisterComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../http.service */ "./src/app/http.service.ts");
+
+
+
+
+var RegisterComponent = /** @class */ (function () {
+    function RegisterComponent(_httpService, _route, _router) {
+        this._httpService = _httpService;
+        this._route = _route;
+        this._router = _router;
+        this.registerUser = { first_name: '', last_name: '', username: '', email: '', password: '' };
+        this.errors = [];
+        this.register = { confirm_pass: '' };
+    }
+    RegisterComponent.prototype.ngOnInit = function () {
+        this._route.params.subscribe(function (params) {
+            console.log(params['id']);
+        });
+    };
+    RegisterComponent.prototype.onRegister = function () {
+        var _this = this;
+        if (this.registerUser.password !== this.register.confirm_pass) {
+            this.errors = [];
+            this.errors.push("The passwords do not match");
+            console.log("error: ", this.errors);
+        }
+        console.log("#2: In login component ts", this.registerUser);
+        var tempObservable = this._httpService.registerThisUser(this.registerUser);
+        tempObservable.subscribe(function (data) {
+            console.log(" #6 Register component got the new user", data);
+            _this.errors = [];
+            if (data['message'] === 'error') {
+                console.log("This is our error data ", data);
+                var errorsResponse = data['errors']['errors'];
+                for (var key in errorsResponse) {
+                    var errString = key + '-' + errorsResponse[key]['message'];
+                    _this.errors.push(errString);
+                }
+                if (data['errors']['code'] === 11000) {
+                    _this.errors.push("This username/email already exist");
+                }
+            }
+            else {
+                _this._router.navigate(['user/' + data['username']]);
+            }
+        });
+    };
+    RegisterComponent.prototype.goHome = function () {
+        this._router.navigate(['']);
+    };
+    RegisterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-register',
+            template: __webpack_require__(/*! ./register.component.html */ "./src/app/register/register.component.html"),
+            styles: [__webpack_require__(/*! ./register.component.css */ "./src/app/register/register.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_3__["HttpService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], RegisterComponent);
+    return RegisterComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -367,7 +541,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\khanh\Documents\Coding Dojo\mean-stack\General\travelogue\public\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/ashleyhull/Desktop/Travelogue/public/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -10,8 +10,10 @@ module.exports = function(app){
         console.log("#4 In routes post /login")
         users.login_user(req, res);
     })
-    // Below is example of post method
-    // app.post('/btquote', function (req, res) {
-    //     quotes.btquote(req, res);
-    // })
+
+    app.post('/create', function (req, res){
+        console.log("#4 In routes post /create")
+        users.create_user(req, res);
+    })
+
 }

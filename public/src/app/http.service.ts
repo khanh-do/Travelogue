@@ -12,4 +12,9 @@ export class HttpService {
     console.log("#3 in http.service.ts user: ", user);
     return this._http.post('/login', user);
   }
+
+  registerThisUser(user){
+    console.log("#3 in http.service.ts user: ", user);
+    return this._http.post('/create', user);
+  }
 }

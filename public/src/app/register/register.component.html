@@ -1,0 +1,25 @@
+<h3>Register:</h3>
+<div class="form">
+  <form (submit)="onRegister()">
+      <p>First Name:</p>
+      <input [(ngModel)]="registerUser.first_name" type="text" name="registerUser.first_name" placeholder="First Name"/>
+      <p>Last Name:</p>
+     <input [(ngModel)]="registerUser.last_name" type="text" name="registerUser.last_name" placeholder="Last Name"/>
+     <p>Username:</p>
+     <input [(ngModel)]="registerUser.username" type="text" name="registerUser.username" placeholder="Username"/>
+     <p>Email:</p>
+     <input [(ngModel)]="registerUser.email" type="text" name="registerUser.email" placeholder="Email"/>
+     <p>Password:</p>
+     <input [(ngModel)]="registerUser.password" type='password' name="registerUser.password" placeholder="Password"><br>
+     <p>Confirm Password:</p>
+     <input [(ngModel)]="register.confirm_pass" type="password" name="register.confirm_pass" placeholder="Confirm Password"/>
+     <br>
+     <br>
+     <input type="submit" value="Register"/>
+
+  </form>
+</div>
+
+<div *ngIf='errors.length > 0' style='color:red;'>
+  <h6 *ngFor='let error of errors'>{{error}}</h6>
+</div>
