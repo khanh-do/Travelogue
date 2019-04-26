@@ -16,12 +16,35 @@ module.exports = {
         let email = req.body.email;
         let password = req.body.password;
         User.findOne({ email: email }, function (err, user) {
-            // need to check password match and throw error
             // the query does not return an error when a null is returned
+            // var outcome = 
+            // bcrypt.compare(req.body.password, user.password)
+            //     .then(result => {
+            //         console.log("actual result ", result)
+            //         return result;
+            //         }
+            //     )
+            //     .catch(error => {
+            //     });
+
+            // bcrypt.compare(password1,password2 )
+            // .then(result => {
+            //     return result;
+            // })
+            // .catch(error => {
+	 
+            // })
+            // var outcome = bcrypt.compare(req.body.password, user.password)
+
+            // if(!outcome){
+            //     console.log("outcome ", outcome)
+            //     res.json({message:"The passwords don't match."});
+            
             if (!user) {
                 res.json({ message: "User not found" });
-            }
-            else if (err) {
+            }else if (!password){
+                res.json({message:"Password is null"})
+            }else if (err) {
                 res.json({ message: "Error", error: err });
             } else {
                 res.json({ message: "Success", data: user });

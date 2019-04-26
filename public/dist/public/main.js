@@ -288,7 +288,7 @@ var HttpService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".login{\nbackground-image: url(https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?cs=srgb&dl=beach-calm-clouds-457882.jpg&fm=jpg);\nmin-height:900px;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vbG9naW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQUNBLHNJQUFzSTtBQUN0SSxnQkFBZ0I7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxvZ2lue1xuYmFja2dyb3VuZC1pbWFnZTogdXJsKGh0dHBzOi8vaW1hZ2VzLnBleGVscy5jb20vcGhvdG9zLzQ1Nzg4Mi9wZXhlbHMtcGhvdG8tNDU3ODgyLmpwZWc/Y3M9c3JnYiZkbD1iZWFjaC1jYWxtLWNsb3Vkcy00NTc4ODIuanBnJmZtPWpwZyk7XG5taW4taGVpZ2h0OjkwMHB4O1xufVxuXG5cbiJdfQ== */"
 
 /***/ }),
 
@@ -299,7 +299,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Login:</h3>\n<div class=\"form\">\n  <form (submit)=\"onLogin()\">\n  <p>Email:</p>\n     <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\"/>\n     <p>Password:</p>\n     <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\"><br>\n     <!-- <button [routerLink]=\"['/user/:id']\">Login</button>&nbsp;&nbsp; -->\n     \n     <input type=\"submit\" value=\"Login\"/>\n\n     <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\n\n  </form>\n</div>\n\n<div *ngIf='errors.length > 0' style='color:red;'>\n  <h6 *ngFor='let error of errors'>{{error}}</h6>\n</div>\n\n\n"
+module.exports = "<div class=\"login\">\n<div class=\"container\">\n    <div class=\"row justify-content-md-center\">\n      <div class=\"col col-lg-2\">\n      </div>\n\n      <div class=\"col-md-auto\">\n          <div class=\"form-group border rounded center bg-white text-dark mt-5\">\n              <h3>Login:</h3>\n            <form (submit)=\"onLogin()\">\n            <p>Email:</p>\n               <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\" class=\"form-control-sm\"/>\n               <p>Password:</p>\n               <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\" class=\"form-control-sm\"><br>\n               <!-- <button [routerLink]=\"['/user/:id']\">Login</button>&nbsp;&nbsp; -->\n               \n               <input type=\"submit\" value=\"Login\"/>\n          \n               <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\n          \n            </form>\n          </div>\n          \n          <div *ngIf='errors.length > 0' style='color:red;'>\n            <h6 *ngFor='let error of errors'>{{error}}</h6>\n          </div>\n      </div>\n      <div class=\"col col-lg-2\">\n\n      </div>\n    </div>\n\n\n\n</div>\n\n\n"
 
 /***/ }),
 
@@ -340,7 +340,15 @@ var LoginComponent = /** @class */ (function () {
             _this.errors = [];
             if (data['message'] === 'User not found') {
                 console.log("Going back home");
-                _this.errors.push("Email/Password combination is not valid");
+                _this.errors.push("Email/Password combination is not valid.");
+            }
+            else if (data['message'] === 'Password is null') {
+                console.log("No password");
+                _this.errors.push("Please enter your password.");
+            }
+            else if (data['message'] === "The passwords don't match.") {
+                console.log("Passwords don't match");
+                _this.errors.push("Email/Password combination is not valid.");
             }
             // if(resp['message'] === 'error') {
             //   console.log("This is our error data: ", resp);
