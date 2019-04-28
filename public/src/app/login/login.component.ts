@@ -29,7 +29,13 @@ export class LoginComponent implements OnInit {
       this.errors = [];
       if(data['message'] === 'User not found'){
         console.log("Going back home");
-        this.errors.push("Email/Password combination is not valid");
+        this.errors.push("Email/Password combination is not valid.");
+      } else if(data['message'] === 'Password is null'){
+        console.log("No password");
+        this.errors.push("Please enter your password.");
+      } else if(data['message'] === "The passwords don't match."){
+        console.log("Passwords don't match")
+        this.errors.push("Email/Password combination is not valid.");
       }
       // if(resp['message'] === 'error') {
       //   console.log("This is our error data: ", resp);
