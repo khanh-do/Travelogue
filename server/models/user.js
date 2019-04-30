@@ -70,7 +70,7 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        validate: [ validator.isEmail, 'invalid email' ]
+        validate: [ validator.isEmail, 'Invalid email format' ]
     },
     password: {
         type: String,
