@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       var errorsResponse = data['errors']['errors']
 
       for(var key in errorsResponse){
-        var errString = key + '-' + errorsResponse[key]['message']
+        var errString = errorsResponse[key]['message']
         this.errors.push(errString)
       }
       if(data['errors']['code'] === 11000){
