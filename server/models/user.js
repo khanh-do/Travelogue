@@ -31,8 +31,7 @@ const LocationSchema = new mongoose.Schema({
     // standard two letter format.
     state: { 
         type: String, 
-        trim: true, 
-        minlength: 2
+        trim: true
     },
     country: { 
         type: String, 
@@ -40,6 +39,10 @@ const LocationSchema = new mongoose.Schema({
         required: 'The country name must contain at least 2 characters', 
         trim: true, 
         minlength: 2 
+    },
+    coordinates: {
+        lat:  { type: Number, required: true }, 
+        lng: { type: Number, required: true }     
     },
     attractions: [AttractionSchema]
 },{ timestamps: true })

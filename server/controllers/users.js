@@ -75,5 +75,17 @@ module.exports = {
                     }
                 })
             });
-    }
+    },
+
+    find_user: function(req, res){
+        // console.log("#5: in Server Controller", req.params);
+        // Find the user by username, and return the user object found
+        User.findOne({username:req.params.username}, function(err, user){
+            if(err){
+                res.json({message: "Error", error:err});
+            } else {
+                res.json({message: "Success", data: user});
+            }
+        });
+    },
 }
