@@ -7,13 +7,18 @@ module.exports = function(app){
     })
 
     app.post('/login', function (req, res) {
-        console.log("#4 In routes post /login")
+        // console.log("#4 In routes post /login")
         users.login_user(req, res);
     })
 
     app.post('/create', function (req, res){
-        console.log("#4 In routes post /create")
+        // console.log("#4 In routes post /create")
         users.create_user(req, res);
+    })
+
+    app.get('/userInfo/:username', function (req, res){
+        // console.log("#4 In routes get user", req.params.username);
+        users.find_user(req, res);
     })
 
 }

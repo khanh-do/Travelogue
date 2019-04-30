@@ -1,5 +1,37 @@
-<p>
-  dashboard works!
-</p>
+<p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p>
+<agm-map 
+  [latitude]='latitude'
+	[longitude]='longitude'
+	[zoom]='2.5'
+	(mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>
+	<agm-marker
+		*ngFor='let marker of markers'
+		[latitude]='marker.lat'
+		[longitude]='marker.lng'
+		[opacity]='marker.alpha'
+		[markerDraggable]='true'
+		(markerClick)='selectMarker($event)'
+		>
+		</agm-marker>
+>
+</agm-map>
+
+<div *ngIf='showForm'>
+	<form (submit)="addCity()">
+		<p>City:</p>
+		<input [(ngModel)]="newLocation.city" type="text" name="newLocation.city" placeholder="City"/>
+		<p>State:</p>
+		<input [(ngModel)]="newLocation.state" type="text" name="newLocation.state" placeholder="State"/>
+		<p>Country:</p>
+		<input [(ngModel)]="newLocation.country" type="text" name="newLocation.country" placeholder="Country"/>
+		<p>Latitude:</p>
+		<input [(ngModel)]="newLocation.latitude" type="number" name="newLocation.latitude" placeholder="Latitude"/>
+		<p>Longitude:</p>
+		<input [(ngModel)]="newLocation.longitude" type='number' name="newLocation.longitude" placeholder="Longitude"/><br>
+		<br>
+		<input type="submit" value="Save This Location"/>
+	</form>
+</div>
+
 
 
