@@ -1,37 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Add Destination</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Edit Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Logout</a>
+			</li>
+		</ul>
+
+	</div>
+</nav>
+
+
 <p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p>
-<agm-map 
-  [latitude]='latitude'
-	[longitude]='longitude'
-	[zoom]='2.5'
-	(mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>
-	<agm-marker
-		*ngFor='let marker of markers'
-		[latitude]='marker.lat'
-		[longitude]='marker.lng'
-		[opacity]='marker.alpha'
-		[markerDraggable]='true'
-		(markerClick)='selectMarker($event)'
-		>
-		</agm-marker>
->
+<agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>
+	<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'
+	 [markerDraggable]='true' (markerClick)='selectMarker($event)'>
+	</agm-marker>
+	>
 </agm-map>
 
+
 <div *ngIf='showForm'>
-	<form (submit)="addCity()">
+	<form (submit)="addCity()" class="form-inline text-center">
 		<p>City:</p>
-		<input [(ngModel)]="newLocation.city" type="text" name="newLocation.city" placeholder="City"/>
+		<input [(ngModel)]="newLocation.city" type="text" name="newLocation.city" placeholder="City" class="form-control"/>
 		<p>State:</p>
-		<input [(ngModel)]="newLocation.state" type="text" name="newLocation.state" placeholder="State"/>
+		<input [(ngModel)]="newLocation.state" type="text" name="newLocation.state" placeholder="State" class="form-control"/>
 		<p>Country:</p>
-		<input [(ngModel)]="newLocation.country" type="text" name="newLocation.country" placeholder="Country"/>
-		<p>Latitude:</p>
-		<input [(ngModel)]="newLocation.latitude" type="number" name="newLocation.latitude" placeholder="Latitude"/>
-		<p>Longitude:</p>
-		<input [(ngModel)]="newLocation.longitude" type='number' name="newLocation.longitude" placeholder="Longitude"/><br>
-		<br>
-		<input type="submit" value="Save This Location"/>
+		<input [(ngModel)]="newLocation.country" type="text" name="newLocation.country" placeholder="Country" class="form-control"/>
+		<!-- <p>Latitude:</p> -->
+		<input [(ngModel)]="newLocation.latitude" type="hidden" name="newLocation.latitude" placeholder="Latitude" class="form-control"/>
+		<!-- <p>Longitude:</p> -->
+		<input [(ngModel)]="newLocation.longitude" type='hidden' name="newLocation.longitude" placeholder="Longitude" class="form-control"/>
+		<input type="submit" value="Save This Location" />
 	</form>
 </div>
-
-
 

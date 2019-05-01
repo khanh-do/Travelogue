@@ -1,0 +1,15 @@
+.register {
+    background-image: url(https://images.pexels.com/photos/876218/pexels-photo-876218.jpeg?cs=srgb&dl=architecture-benches-buildings-876218.jpg&fm=jpg);
+    background-size: cover;
+    padding: 60px;
+    min-height: 800px;
+    font-family:Arial, Helvetica, sans-serif
+}
+h1 {
+    font-family: Apple Chancery;
+}
+#login-column {
+    border: 2px solid rgba(126, 145, 173);
+    background-color:rgba(126, 145, 173, 0.5);
+    
+}
