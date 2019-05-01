@@ -15,35 +15,28 @@ module.exports = {
         console.log("#5 in Server Controller:", req.body);
         let email = req.body.email;
         let password = req.body.password;
+        
         User.findOne({ email: email }, function (err, user) {
-            // the query does not return an error when a null is returned
-            // var outcome = 
-            // bcrypt.compare(req.body.password, user.password)
-            //     .then(result => {
-            //         console.log("actual result ", result)
-            //         return result;
-            //         }
-            //     )
-            //     .catch(error => {
-            //     });
-
-            // bcrypt.compare(password1,password2 )
-            // .then(result => {
-            //     return result;
-            // })
-            // .catch(error => {
-	 
-            // })
-            // var outcome = bcrypt.compare(req.body.password, user.password)
-
-            // if(!outcome){
-            //     console.log("outcome ", outcome)
-            //     res.json({message:"The passwords don't match."});
-            
-            if (!user) {
+            var passwordMatch;
+            if(user){
+                if(bcrypt.compareSync(req.body.password, user.password)) {
+                    // Passwords match
+                    passwordMatch = true;
+                    console.log("in bcrypt", passwordMatch);
+                } else {
+                    // Passwords don't match
+                    passwordMatch = false;
+                }
+            }                         
+            console.log(passwordMatch);           
+            if (!email) {
+                res.json({ message: "Email is null" });
+            }else if (!user) {
                 res.json({ message: "User not found" });
             }else if (!password){
-                res.json({message:"Password is null"})
+                res.json({message:"Password is null"});
+            }else if (!passwordMatch){
+                res.json({ message: "Password is invalid"});
             }else if (err) {
                 res.json({ message: "Error", error: err });
             } else {
@@ -65,7 +58,7 @@ module.exports = {
                     email: req.body.email,
                     password: hashed_password,
                 })
-                console.log('new_user: ', new_user)
+                // console.log('new_user: ', new_user)
                 new_user.save(function (err, user) {
                     if (err) {
                         res.json({message: "error", errors: err})
