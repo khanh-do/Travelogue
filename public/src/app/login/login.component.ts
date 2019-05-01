@@ -26,31 +26,39 @@ export class LoginComponent implements OnInit {
     let tempObservable = this._httpService.loginThisUser(this.loginUser);
     tempObservable.subscribe(data => {
       console.log("#6 login component got the user", data);
+      // Clear the errors array per every login attempt
       this.errors = [];
-      if(data['message'] === 'User not found'){
+      if(data['message'] === 'Email is null'){
+        this.errors.push("Please enter your login email.");
+      }else if(data['message'] === 'User not found'){
         console.log("Going back home");
         this.errors.push("Email/Password combination is not valid.");
-      } else if(data['message'] === 'Password is null'){
+      }else if(data['message'] === 'Password is invalid'){
+        this.errors.push("Email/Password combination is not valid.");
+      }else if(data['message'] === 'Password is null'){
         console.log("No password");
         this.errors.push("Please enter your password.");
       } else if(data['message'] === "The passwords don't match."){
         console.log("Passwords don't match")
         this.errors.push("Email/Password combination is not valid.");
+      } else {
+        console.log("username: ", data['data']['username']);
+        var username = data['data']['username'];
+        //save username to sessions
+        this._router.navigate(['user/'+ username]);
       }
-      // if(resp['message'] === 'error') {
+      
+      // if(resp['message'] === 'Error') {
       //   console.log("This is our error data: ", resp);
       //     // console.log(resp['errors']['errors']['name']['message'])
         
       //     var errorsResponse = resp['errors']['errors']
 
       //     for(var key in errorsResponse){
-      //       var errString = key + ' - ' + errorsResponse[key]['message']
+      //       var errString = errorsResponse[key]['message']
       //       this.errors.push(errString)          
       //     }  
-      //   if(resp['errors']['code'] === 11000){
-      //     this.errors.push("This author is a duplicate, please enter a unique author")
-      //   }     
-        
+            
       // } else {
       //   this.goHome();
       // }
