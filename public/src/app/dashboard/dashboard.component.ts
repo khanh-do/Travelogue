@@ -30,8 +30,9 @@ export class DashboardComponent implements OnInit {
     // { lat: 12.09407, lng: 26.31618},
     // { lat: 47.92393, lng: 78.58339}
   ];
-  username = "KhanhDo";
+  username = "";
   errors = [];
+  // A new location form will show when this variable is set to true
   showForm = false;
   newLocation = {city: '', state: '', country: '', latitude: 0, longitude: 0};
   geocoder;
@@ -51,17 +52,27 @@ export class DashboardComponent implements OnInit {
      }
 
   ngOnInit() {
-    // The following method gets the user from the database,
+    // The following method gets the user from the database if the username is stored in session,
     // extracts the locations array from the user's info, and
-    // adds the locations' coordinates to the markers array (invoke the addMarker method)
-    this.getUser(this.username);
+    // adds the locations' coordinates to the markers array
+    console.log("from storage:", sessionStorage.getItem('username'));
+    let sessionUsername = sessionStorage.getItem('username');
+    this._route.params.subscribe((params: Params) => {
+      console.log("From URL: " + params['username']);
+      this.username = params['username'];
+      if(sessionUsername === this.username){
+        this.getUser(this.username);
+      }else{
+        this.goHome();
+      }
+    });            
   }
 
   getUser(username){
     // console.log("#2: In dashboard component ts", this.username);
     let tempObservable = this._httpService.getThisUser(this.username);
     tempObservable.subscribe(data => {
-      // console.log("Got our user!", data);
+      console.log("Got our user!", data);
       // console.log(data['data']['locations'])
       for(var i=0; i<data['data']['locations'].length; i++){
         // console.log(data['data']['locations'][i].coordinates);
@@ -106,5 +117,8 @@ export class DashboardComponent implements OnInit {
       lat: event.latitude,
       lng: event.longitude
     };
+  }
+  goHome() {
+    this._router.navigate(['']);
   }
 }

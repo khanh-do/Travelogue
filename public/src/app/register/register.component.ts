@@ -9,10 +9,9 @@ import { HttpService } from '../http.service';
 })
 export class RegisterComponent implements OnInit {
   registerUser = { first_name: '', last_name: '', username:'', email:'', password:''}
+  // declare a variable to hold the confirm password field (compare against the user password)
+  register = {confirm_pass:''} 
   errors = [];
-  register={confirm_pass:''}
- 
-
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,
@@ -21,9 +20,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe((params: Params) => {
-      console.log(params['id'])
-  });
+      console.log(params['id']);
+    });
   }
+
   onRegister(){
     if(this.registerUser.password !== this.register.confirm_pass){
       this.errors = [];
@@ -34,27 +34,27 @@ export class RegisterComponent implements OnInit {
     let tempObservable = this._httpService.registerThisUser(this.registerUser);
     tempObservable.subscribe(data => {
       console.log(" #6 Register component got the new user", data);
-    this.errors = [];
-    if(data['message'] === 'error'){
-      console.log("This is our error data ", data);
-      var errorsResponse = data['errors']['errors']
-
-      for(var key in errorsResponse){
-        var errString = errorsResponse[key]['message']
-        this.errors.push(errString)
+      this.errors = [];
+      if(data['message'] === 'error'){
+        console.log("This is our error data ", data);
+        var errorsResponse = data['errors']['errors'];
+        for(var key in errorsResponse){
+          var errString = errorsResponse[key]['message'];
+          this.errors.push(errString);
+        }
+        if(data['errors']['code'] === 11000){
+          this.errors.push("This username/email already exist");
+        } 
+      } else {
+        console.log("username from registration: ", data['username']);
+        var username = data['username'];
+        sessionStorage.setItem('username', username);
+        // this._router.navigate(['user/' + data['username']]);
+        this._router.navigate(['user/', username]);
       }
-      if(data['errors']['code'] === 11000){
-        this.errors.push("This username/email already exist")
-      } 
-    } else {
-      this._router.navigate(['user/' + data['username']])
-    }
-
     })
   }
   goHome() {
     this._router.navigate(['']);
   }
- 
-
 }

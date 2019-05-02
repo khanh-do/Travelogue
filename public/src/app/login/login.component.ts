@@ -42,9 +42,11 @@ export class LoginComponent implements OnInit {
         console.log("Passwords don't match")
         this.errors.push("Email/Password combination is not valid.");
       } else {
-        console.log("username: ", data['data']['username']);
+        // console.log("username: ", data['data']['username']);
         var username = data['data']['username'];
-        //save username to sessions
+        // upon successful login, save username to Window.sessionStorage
+        sessionStorage.setItem('username', username);
+        // then redirect to the user's dashboard
         this._router.navigate(['user/'+ username]);
       }
       
