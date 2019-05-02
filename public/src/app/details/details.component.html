@@ -1,0 +1,44 @@
+<div class="justify-content-center align-items-center">
+
+  <h1 class="text-center text-dark pt-3">{{locationToShow.city}}, {{locationToShow.state}}</h1>
+  <h2>{{locationToShow.country}}</h2>
+
+</div>
+
+<div *ngFor='let attraction of locationToShow.attractions'>
+  <p>Attraction: {{attraction.name}}</p>
+  <p>Rating: {{attraction.rating}}</p>
+  <p>Review: {{attraction.review}}</p>
+</div>
+
+
+
+<div class="row justify-content-center align-items-center">
+  <form (submit)="addAttraction()">
+    <h3 class="text-center text-dark pt-3">Add New Attraction</h3>
+  
+    <div class="form-group text-center">
+      <input type="text" name="" placeholder="Attraction"
+        class="form-control" />
+    </div>
+ 
+    <div class="form-group text-center">
+      <input type="text" name="" placeholder="Review" class="form-control" />
+    </div>
+  
+    <div class="form-group text-center">
+      <div class="rating">
+        <input type="radio" name="star" id="star1"><label for="star1" class="form-check"></label>
+        <input type="radio" name="star" id="star2"><label for="star2" class="form-check"></label>
+        <input type="radio" name="star" id="star3"><label for="star3" class="form-check"></label>
+        <input type="radio" name="star" id="star4"><label for="star4" class="form-check"></label>
+        <input type="radio" name="star" id="star5"><label for="star5" class="form-check"></label>
+      </div>
+
+    </div>
+
+      <div class="form-group text-center">
+      <input type="submit" value="Add" class="btn btn-info btn-md btn-dark" />
+    </div>
+  </form>
+</div>

@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
   showForm = false;
   newLocation = {city: '', state: '', country: '', latitude: 0, longitude: 0};
   geocoder;
+  selectedLocation={};
 
   constructor(
     private _httpService: HttpService,
@@ -79,6 +80,9 @@ export class DashboardComponent implements OnInit {
         // this.markers.push(data['data']['locations'][i].coordinates)
         this.markers.push(data['data']['locations'][i].coordinates)
       }   
+      this.selectedLocation = data['data']['locations'][0]
+      console.log("--------->check here: ", this.selectedLocation)
+      console.log("--------->check here: ", data)
     })
   }
 

@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AgmCoreModule } from '@agm/core';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AgmCoreModule } from '@agm/core';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
