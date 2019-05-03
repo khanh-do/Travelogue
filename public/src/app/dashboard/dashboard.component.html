@@ -46,6 +46,7 @@
 </div>
 
 <div>
-	<app-details *ngIf="selectedLocation" [locationToShow]="selectedLocation"></app-details>
+	<!-- <app-details *ngIf="selectedLocation" [locationToShow]="selectedLocation"></app-details> -->
+	<app-details *ngIf="showDetails" [locationToShow]="selectedLocation"></app-details>
 </div>
 

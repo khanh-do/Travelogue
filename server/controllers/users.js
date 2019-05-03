@@ -63,8 +63,9 @@ module.exports = {
                     if (err) {
                         res.json({message: "error", errors: err})
                     } else {
-                        req.session.username = req.body.username
-                        res.json({message: "Success", data: user, username:req.session.username})
+                        // req.session.username = req.body.username
+                        // res.json({message: "Success", data: user, username:req.session.username})
+                        res.json({message: "Success", data: user})
                     }
                 })
             });
