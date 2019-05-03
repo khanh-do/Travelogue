@@ -17,26 +17,24 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   // `
 })
 export class DashboardComponent implements OnInit {
-  lat = 43.879078;
-  lng = -103.4615581;
-  selectedMarker;
-  // Declare an empty array to hold coordinates obtained from the database for logged in user
-  markers = [
-    // These are all just random coordinates from https://www.random.org/geographic-coordinates/
-    // { lat: 22.33159, lng: 105.63233},
-    // { lat: 7.92658, lng: -12.05228},
-    // { lat: 48.75606, lng: -118.85900},
-    // { lat: 5.19334, lng: -67.03352},
-    // { lat: 12.09407, lng: 26.31618},
-    // { lat: 47.92393, lng: 78.58339}
-  ];
+  // lat = 43.879078;
+  // lng = -103.4615581;
   username = "";
   errors = [];
-  // A new location form will show when this variable is set to true
+  selectedMarker;
+  // Declare an empty array to hold coordinates of locations saved by the logged in user (obtained from database) to render markers
+  markers = [];
+  // Variable to store the user's information
+  userInfo = {};
+  
+  // A form to save a new location will show when the showForm variable is set to true
   showForm = false;
   newLocation = {city: '', state: '', country: '', latitude: 0, longitude: 0};
   geocoder;
-  selectedLocation={};
+  // The nested details component will render when the showDetails variable is set to true
+  showDetails = false;
+  // The selectedLocation variable will hold the location information when the user clicked on a marker of a saved location
+  selectedLocation={};  
 
   constructor(
     private _httpService: HttpService,
@@ -53,9 +51,8 @@ export class DashboardComponent implements OnInit {
      }
 
   ngOnInit() {
-    // The following method gets the user from the database if the username is stored in session,
-    // extracts the locations array from the user's info, and
-    // adds the locations' coordinates to the markers array
+    // Get the user information from the database if the username is stored in sessionStorage,
+    // otherwise redirect to the login page
     console.log("from storage:", sessionStorage.getItem('username'));
     let sessionUsername = sessionStorage.getItem('username');
     this._route.params.subscribe((params: Params) => {
@@ -69,31 +66,39 @@ export class DashboardComponent implements OnInit {
     });            
   }
 
+  // Extract the locations array from the user's info, and adds the locations' coordinates to the markers array
   getUser(username){
     // console.log("#2: In dashboard component ts", this.username);
     let tempObservable = this._httpService.getThisUser(this.username);
     tempObservable.subscribe(data => {
       console.log("Got our user!", data);
+      this.userInfo = data;
+      console.log(this.userInfo);
       // console.log(data['data']['locations'])
       for(var i=0; i<data['data']['locations'].length; i++){
         // console.log(data['data']['locations'][i].coordinates);
         // this.markers.push(data['data']['locations'][i].coordinates)
         this.markers.push(data['data']['locations'][i].coordinates)
       }   
-      this.selectedLocation = data['data']['locations'][0]
-      console.log("--------->check here: ", this.selectedLocation)
-      console.log("--------->check here: ", data)
+      // this.selectedLocation = data['data']['locations'][3]
+      // console.log("--------->check here: ", this.selectedLocation)
+      // console.log("--------->check here: ", data)
     })
   }
 
   // **Need to modify this method to bring up the info window which asks the user to add, autopopulating with the coords. and City, State name
   addMarker(lat: number, lng: number) {
+    // Clear the previous details display, if any, when the user selects a new location on the map to add
+    this.showDetails = false;
+    this.selectedLocation = {};
+
     console.log("Lat: ", lat)
     console.log("Long: ", lng)
     this.markers.push({ lat, lng, alpha: 0.6 });
+    // Set the variable showForm to true which will display the form to save this new location
     this.showForm = true;
     this.newLocation.latitude = lat;
-    this.newLocation.longitude = lng;
+    this.newLocation.longitude = lng;    
 
     // findAddressByCoordinates() {
       // this.geocoder.geocode({
@@ -107,21 +112,36 @@ export class DashboardComponent implements OnInit {
     // }
   }
 
-  max(coordType: 'lat' | 'lng'): number {
-    return Math.max(...this.markers.map(marker => marker[coordType]));
-  }
-
-  min(coordType: 'lat' | 'lng'): number {
-    return Math.min(...this.markers.map(marker => marker[coordType]));
-  }
-
   selectMarker(event) {
-    console.log(event)
+    // Set variable showForm to false to clear the save new location form display
+    this.showForm = false;
+    // console.log("This marker was selected", event)
+    // Set the selected location coordinates to the selectedMarker latitude and longitude
     this.selectedMarker = {
       lat: event.latitude,
       lng: event.longitude
     };
+    // console.log("selectedMarker: ", this.selectedMarker)
+    // Use the coordinates of the selected marker to find its location and to display its details
+    for(var i=0; i<this.userInfo['data']['locations'].length; i++){
+      // console.log("to match: ", this.userInfo['data']['locations'][i].coordinates)
+      if(this.userInfo['data']['locations'][i]['coordinates'].lat == this.selectedMarker.lat){
+        // console.log("The location we found was ", this.userInfo['data']['locations'][i].city);
+        this.selectedLocation = this.userInfo['data']['locations'][i];
+        this.showDetails=true;
+      }
+    }
   }
+
+  // methods used in drawing a rectangle
+  // max(coordType: 'lat' | 'lng'): number {
+  //   return Math.max(...this.markers.map(marker => marker[coordType]));
+  // }
+
+  // min(coordType: 'lat' | 'lng'): number {
+  //   return Math.min(...this.markers.map(marker => marker[coordType]));
+  // }
+
   goHome() {
     this._router.navigate(['']);
   }
