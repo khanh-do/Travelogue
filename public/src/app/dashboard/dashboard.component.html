@@ -20,7 +20,7 @@
 </nav>
 
 
-<p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p>
+<!-- <p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p> -->
 <agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>
 	<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'
 	 [markerDraggable]='true' (markerClick)='selectMarker($event)'>
@@ -30,7 +30,7 @@
 
 
 <div *ngIf='showForm'>
-	<form (submit)="addCity()" class="form-inline text-center">
+	<form (submit)="onAddLocation()" class="form-inline text-center">
 		<p>City:</p>
 		<input [(ngModel)]="newLocation.city" type="text" name="newLocation.city" placeholder="City" class="form-control"/>
 		<p>State:</p>
@@ -38,9 +38,9 @@
 		<p>Country:</p>
 		<input [(ngModel)]="newLocation.country" type="text" name="newLocation.country" placeholder="Country" class="form-control"/>
 		<!-- <p>Latitude:</p> -->
-		<input [(ngModel)]="newLocation.latitude" type="hidden" name="newLocation.latitude" placeholder="Latitude" class="form-control"/>
+		<input [(ngModel)]="newLocation.coordinates.lat" type="hidden" name="newLocation.coordinates.lat" placeholder="Latitude" class="form-control"/>
 		<!-- <p>Longitude:</p> -->
-		<input [(ngModel)]="newLocation.longitude" type='hidden' name="newLocation.longitude" placeholder="Longitude" class="form-control"/>
+		<input [(ngModel)]="newLocation.coordinates.lng" type='hidden' name="newLocation.coordinates.lng" placeholder="Longitude" class="form-control"/>
 		<input type="submit" value="Save This Location" />
 	</form>
 </div>

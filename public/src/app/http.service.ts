@@ -23,4 +23,14 @@ export class HttpService {
     return this._http.get('/userInfo/' + username);
   }
 
+  getAddress(lat, long){
+    console.log("#3 in http.service.ts lat lng: ", lat, long);
+    return this._http.get('https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+long+'&zoom=18&addressdetails=1');
+  }
+
+  addLocation(username, locationToAdd){
+    console.log("#3 in http.service.ts location: ", locationToAdd)
+    return this._http.put('/userInfo/' + username, locationToAdd);
+  }
+
 }

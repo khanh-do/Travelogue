@@ -21,4 +21,9 @@ module.exports = function(app){
         users.find_user(req, res);
     })
 
+    app.put('/userInfo/:username', function (req, res) {
+        console.log("#4 In routes with username: ", req.params);
+        users.update_user(req, res);
+    })
+
 }
