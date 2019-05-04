@@ -82,4 +82,19 @@ module.exports = {
             }
         });
     },
+
+    update_user: function(req, res){
+        console.log('#5: in Server Controller', req.params, req.body)
+        User.findOne({username:req.params.username}, function(err, user){
+            user.locations.push(req.body)
+            user.save(function(err, user){
+                if(err){
+                res.json({message:"error", error:err});
+                } else{
+                res.json({message:"Success", data:user});
+                }
+            })
+            
+        });
+    }
 }

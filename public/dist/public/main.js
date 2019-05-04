@@ -199,7 +199,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "agm-map { \r\n    height: 600px; /* height is required */ \r\n    \r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYSxFQUFFLHVCQUF1Qjs7QUFFMUMiLCJmaWxlIjoic3JjL2FwcC9kYXNoYm9hcmQvZGFzaGJvYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJhZ20tbWFwIHsgXHJcbiAgICBoZWlnaHQ6IDYwMHB4OyAvKiBoZWlnaHQgaXMgcmVxdWlyZWQgKi8gXHJcbiAgICBcclxufVxyXG4iXX0= */"
+module.exports = "agm-map { \r\n    height: 600px; /* height is required */     \r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYSxFQUFFLHVCQUF1QjtBQUMxQyIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImFnbS1tYXAgeyBcclxuICAgIGhlaWdodDogNjAwcHg7IC8qIGhlaWdodCBpcyByZXF1aXJlZCAqLyAgICAgXHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -210,7 +210,7 @@ module.exports = "agm-map { \r\n    height: 600px; /* height is required */ \r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n\r\n\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Add Destination</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Edit Profile</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Logout</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\r\n\t</div>\r\n</nav>\r\n\r\n\r\n<p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p>\r\n<agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>\r\n\t<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'\r\n\t [markerDraggable]='true' (markerClick)='selectMarker($event)'>\r\n\t</agm-marker>\r\n\t>\r\n</agm-map>\r\n\r\n\r\n<div *ngIf='showForm'>\r\n\t<form (submit)=\"addCity()\" class=\"form-inline text-center\">\r\n\t\t<p>City:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.city\" type=\"text\" name=\"newLocation.city\" placeholder=\"City\" class=\"form-control\"/>\r\n\t\t<p>State:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.state\" type=\"text\" name=\"newLocation.state\" placeholder=\"State\" class=\"form-control\"/>\r\n\t\t<p>Country:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.country\" type=\"text\" name=\"newLocation.country\" placeholder=\"Country\" class=\"form-control\"/>\r\n\t\t<!-- <p>Latitude:</p> -->\r\n\t\t<input [(ngModel)]=\"newLocation.latitude\" type=\"hidden\" name=\"newLocation.latitude\" placeholder=\"Latitude\" class=\"form-control\"/>\r\n\t\t<!-- <p>Longitude:</p> -->\r\n\t\t<input [(ngModel)]=\"newLocation.longitude\" type='hidden' name=\"newLocation.longitude\" placeholder=\"Longitude\" class=\"form-control\"/>\r\n\t\t<input type=\"submit\" value=\"Save This Location\" />\r\n\t</form>\r\n</div>\r\n\r\n<div>\r\n\t<!-- <app-details *ngIf=\"selectedLocation\" [locationToShow]=\"selectedLocation\"></app-details> -->\r\n\t<app-details *ngIf=\"showDetails\" [locationToShow]=\"selectedLocation\"></app-details>\r\n</div>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n\r\n\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Add Destination</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Edit Profile</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Logout</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\r\n\t</div>\r\n</nav>\r\n\r\n\r\n<!-- <p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p> -->\r\n<agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>\r\n\t<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'\r\n\t [markerDraggable]='true' (markerClick)='selectMarker($event)'>\r\n\t</agm-marker>\r\n\t>\r\n</agm-map>\r\n\r\n\r\n<div *ngIf='showForm'>\r\n\t<form (submit)=\"onAddLocation()\" class=\"form-inline text-center\">\r\n\t\t<p>City:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.city\" type=\"text\" name=\"newLocation.city\" placeholder=\"City\" class=\"form-control\"/>\r\n\t\t<p>State:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.state\" type=\"text\" name=\"newLocation.state\" placeholder=\"State\" class=\"form-control\"/>\r\n\t\t<p>Country:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.country\" type=\"text\" name=\"newLocation.country\" placeholder=\"Country\" class=\"form-control\"/>\r\n\t\t<!-- <p>Latitude:</p> -->\r\n\t\t<input [(ngModel)]=\"newLocation.coordinates.lat\" type=\"hidden\" name=\"newLocation.coordinates.lat\" placeholder=\"Latitude\" class=\"form-control\"/>\r\n\t\t<!-- <p>Longitude:</p> -->\r\n\t\t<input [(ngModel)]=\"newLocation.coordinates.lng\" type='hidden' name=\"newLocation.coordinates.lng\" placeholder=\"Longitude\" class=\"form-control\"/>\r\n\t\t<input type=\"submit\" value=\"Save This Location\" />\r\n\t</form>\r\n</div>\r\n\r\n<div>\r\n\t<!-- <app-details *ngIf=\"selectedLocation\" [locationToShow]=\"selectedLocation\"></app-details> -->\r\n\t<app-details *ngIf=\"showDetails\" [locationToShow]=\"selectedLocation\"></app-details>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -232,9 +232,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import { MapsAPILoader, AgmMap } from '@agm/core';
-// import { GoogleMapsAPIWrapper } from '@agm/core/services';
-// import { google } from '@agm/core/services/google-maps-types';
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(_httpService, _route, _router) {
         this._httpService = _httpService;
@@ -250,25 +247,18 @@ var DashboardComponent = /** @class */ (function () {
         this.userInfo = {};
         // A form to save a new location will show when the showForm variable is set to true
         this.showForm = false;
-        this.newLocation = { city: '', state: '', country: '', latitude: 0, longitude: 0 };
+        this.newLocation = { city: '', state: '', country: '', coordinates: { lat: 0, lng: 0 } };
         // The nested details component will render when the showDetails variable is set to true
         this.showDetails = false;
         // The selectedLocation variable will hold the location information when the user clicked on a marker of a saved location
         this.selectedLocation = {};
-        //   this.mapsApiLoader = mapsApiLoader;
-        // this.wrapper = wrapper;
-        // this.mapsApiLoader.load().then(() => {
-        //   this.geocoder = new google.maps.Geocoder();
-        // });
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         // Get the user information from the database if the username is stored in sessionStorage,
         // otherwise redirect to the login page
-        console.log("from storage:", sessionStorage.getItem('username'));
         var sessionUsername = sessionStorage.getItem('username');
         this._route.params.subscribe(function (params) {
-            console.log("From URL: " + params['username']);
             _this.username = params['username'];
             if (sessionUsername === _this.username) {
                 _this.getUser(_this.username);
@@ -293,33 +283,7 @@ var DashboardComponent = /** @class */ (function () {
                 // this.markers.push(data['data']['locations'][i].coordinates)
                 _this.markers.push(data['data']['locations'][i].coordinates);
             }
-            // this.selectedLocation = data['data']['locations'][3]
-            // console.log("--------->check here: ", this.selectedLocation)
-            // console.log("--------->check here: ", data)
         });
-    };
-    // **Need to modify this method to bring up the info window which asks the user to add, autopopulating with the coords. and City, State name
-    DashboardComponent.prototype.addMarker = function (lat, lng) {
-        // Clear the previous details display, if any, when the user selects a new location on the map to add
-        this.showDetails = false;
-        this.selectedLocation = {};
-        console.log("Lat: ", lat);
-        console.log("Long: ", lng);
-        this.markers.push({ lat: lat, lng: lng, alpha: 0.6 });
-        // Set the variable showForm to true which will display the form to save this new location
-        this.showForm = true;
-        this.newLocation.latitude = lat;
-        this.newLocation.longitude = lng;
-        // findAddressByCoordinates() {
-        // this.geocoder.geocode({
-        //   'location': {
-        //     lat: this.newLocation.latitude,
-        //     lng: this.newLocation.longitude
-        //   }
-        // }, (results, status) => {
-        //   console.log(results);
-        // })
-        // }
     };
     DashboardComponent.prototype.selectMarker = function (event) {
         // Set variable showForm to false to clear the save new location form display
@@ -340,6 +304,65 @@ var DashboardComponent = /** @class */ (function () {
                 this.showDetails = true;
             }
         }
+    };
+    // Show add location form, pre-populating with the city, state, country, and coordinates of the marked location
+    DashboardComponent.prototype.addMarker = function (lat, lng) {
+        var _this = this;
+        // Clear the previous details display, if any, when the user selects a new location on the map to add
+        this.showDetails = false;
+        this.selectedLocation = {};
+        // console.log("Lat: ", lat)
+        // console.log("Long: ", lng)
+        this.markers.push({ lat: lat, lng: lng, alpha: 0.6 });
+        // Set the variable showForm to true which will display the form to save this new location
+        this.showForm = true;
+        this.newLocation.coordinates.lat = lat;
+        this.newLocation.coordinates.lng = lng;
+        // Get the city, state and country information from the OSM API
+        var tempObservable = this._httpService.getAddress(lat, lng);
+        tempObservable.subscribe(function (data) {
+            // Define the city, state, country of the clicked location from the OSM API
+            if (data['address'].city) {
+                _this.newLocation.city = data['address'].city;
+            }
+            else if (data['address'].town) {
+                _this.newLocation.city = data['address'].town;
+            }
+            else if (data['address'].village) {
+                _this.newLocation.city = data['address'].village;
+            }
+            else if (data['address'].suburb) {
+                _this.newLocation.city = data['address'].suburb;
+            }
+            else if (data['address'].hamlet) {
+                _this.newLocation.city = data['address'].hamlet;
+            }
+            else if (data['address'].county) {
+                _this.newLocation.city = data['address'].county;
+            }
+            else {
+                _this.newLocation.city = 'City';
+            }
+            if (data['address'].state) {
+                _this.newLocation.state = data['address'].state;
+            }
+            if (data['address'].country) {
+                _this.newLocation.country = data['address'].country;
+            }
+        });
+    };
+    DashboardComponent.prototype.onAddLocation = function () {
+        var _this = this;
+        console.log("#2 In onAddLocation method:", this.username, this.newLocation);
+        var tempObservable = this._httpService.addLocation(this.username, this.newLocation);
+        tempObservable.subscribe(function (resp) {
+            // console.log("#6 back in onAddLocation method", this.username)
+            // this._router.navigate(['user/:'+this.username]);
+            // Refresh the dashboard component and map after saving the new location
+            _this._router.navigateByUrl('', { skipLocationChange: true }).then(function () {
+                return _this._router.navigate(['user/' + _this.username]);
+            });
+        });
     };
     // methods used in drawing a rectangle
     // max(coordType: 'lat' | 'lng'): number {
@@ -458,6 +481,14 @@ var HttpService = /** @class */ (function () {
     HttpService.prototype.getThisUser = function (username) {
         // console.log("#3 in http.service.ts username: ", username);
         return this._http.get('/userInfo/' + username);
+    };
+    HttpService.prototype.getAddress = function (lat, long) {
+        console.log("#3 in http.service.ts lat lng: ", lat, long);
+        return this._http.get('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + long + '&zoom=18&addressdetails=1');
+    };
+    HttpService.prototype.addLocation = function (username, locationToAdd) {
+        console.log("#3 in http.service.ts location: ", locationToAdd);
+        return this._http.put('/userInfo/' + username, locationToAdd);
     };
     HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

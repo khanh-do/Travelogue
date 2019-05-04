@@ -2,20 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { getDefaultService } from 'selenium-webdriver/edge';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-// import { MapsAPILoader, AgmMap } from '@agm/core';
-// import { GoogleMapsAPIWrapper } from '@agm/core/services';
-// import { google } from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
-  // styles: ['agm-map { height: 600px; /* height is required */ }'],
-  // template: `
-  //   <agm-map [zoom]="2.5">
-  //   </agm-map>
-  // `
+  styleUrls: ['./dashboard.component.css']  
 })
+
 export class DashboardComponent implements OnInit {
   // lat = 43.879078;
   // lng = -103.4615581;
@@ -28,9 +21,9 @@ export class DashboardComponent implements OnInit {
   userInfo = {};
   
   // A form to save a new location will show when the showForm variable is set to true
-  showForm = false;
-  newLocation = {city: '', state: '', country: '', latitude: 0, longitude: 0};
-  geocoder;
+  showForm = false;  
+  newLocation = {city: '', state: '', country: '', coordinates: {lat: 0, lng: 0}};
+
   // The nested details component will render when the showDetails variable is set to true
   showDetails = false;
   // The selectedLocation variable will hold the location information when the user clicked on a marker of a saved location
@@ -40,23 +33,13 @@ export class DashboardComponent implements OnInit {
     private _httpService: HttpService,
     private _route: ActivatedRoute,
     private _router: Router,
-    // public mapsApiLoader: MapsAPILoader,
-    // private wrapper: GoogleMapsAPIWrapper    
-    ) {
-    //   this.mapsApiLoader = mapsApiLoader;
-    // this.wrapper = wrapper;
-    // this.mapsApiLoader.load().then(() => {
-    //   this.geocoder = new google.maps.Geocoder();
-    // });
-     }
+    ) {}
 
   ngOnInit() {
     // Get the user information from the database if the username is stored in sessionStorage,
     // otherwise redirect to the login page
-    console.log("from storage:", sessionStorage.getItem('username'));
     let sessionUsername = sessionStorage.getItem('username');
     this._route.params.subscribe((params: Params) => {
-      console.log("From URL: " + params['username']);
       this.username = params['username'];
       if(sessionUsername === this.username){
         this.getUser(this.username);
@@ -79,37 +62,8 @@ export class DashboardComponent implements OnInit {
         // console.log(data['data']['locations'][i].coordinates);
         // this.markers.push(data['data']['locations'][i].coordinates)
         this.markers.push(data['data']['locations'][i].coordinates)
-      }   
-      // this.selectedLocation = data['data']['locations'][3]
-      // console.log("--------->check here: ", this.selectedLocation)
-      // console.log("--------->check here: ", data)
+      }         
     })
-  }
-
-  // **Need to modify this method to bring up the info window which asks the user to add, autopopulating with the coords. and City, State name
-  addMarker(lat: number, lng: number) {
-    // Clear the previous details display, if any, when the user selects a new location on the map to add
-    this.showDetails = false;
-    this.selectedLocation = {};
-
-    console.log("Lat: ", lat)
-    console.log("Long: ", lng)
-    this.markers.push({ lat, lng, alpha: 0.6 });
-    // Set the variable showForm to true which will display the form to save this new location
-    this.showForm = true;
-    this.newLocation.latitude = lat;
-    this.newLocation.longitude = lng;    
-
-    // findAddressByCoordinates() {
-      // this.geocoder.geocode({
-      //   'location': {
-      //     lat: this.newLocation.latitude,
-      //     lng: this.newLocation.longitude
-      //   }
-      // }, (results, status) => {
-      //   console.log(results);
-      // })
-    // }
   }
 
   selectMarker(event) {
@@ -131,6 +85,58 @@ export class DashboardComponent implements OnInit {
         this.showDetails=true;
       }
     }
+  }
+
+  // Show add location form, pre-populating with the city, state, country, and coordinates of the marked location
+  addMarker(lat: number, lng: number) {
+    // Clear the previous details display, if any, when the user selects a new location on the map to add
+    this.showDetails = false;
+    this.selectedLocation = {};
+    // console.log("Lat: ", lat)
+    // console.log("Long: ", lng)
+    this.markers.push({ lat, lng, alpha: 0.6 });
+    // Set the variable showForm to true which will display the form to save this new location
+    this.showForm = true;
+    this.newLocation.coordinates.lat = lat;
+    this.newLocation.coordinates.lng = lng;    
+    // Get the city, state and country information from the OSM API
+    let tempObservable = this._httpService.getAddress(lat, lng);
+    tempObservable.subscribe(data => {
+      // Define the city, state, country of the clicked location from the OSM API
+      if(data['address'].city){
+        this.newLocation.city = data['address'].city;
+      }else if(data['address'].town){
+        this.newLocation.city = data['address'].town;
+      }else if(data['address'].village){
+        this.newLocation.city = data['address'].village; 
+      }else if(data['address'].suburb){
+        this.newLocation.city = data['address'].suburb;
+      }else if(data['address'].hamlet){
+        this.newLocation.city = data['address'].hamlet;
+      }else if(data['address'].county){
+        this.newLocation.city = data['address'].county;
+      }else{
+        this.newLocation.city = 'City';
+      }
+      if(data['address'].state){
+        this.newLocation.state = data['address'].state;
+      }
+      if(data['address'].country){
+        this.newLocation.country = data['address'].country;
+      }       
+    })    
+  }
+
+  onAddLocation(){
+    console.log("#2 In onAddLocation method:", this.username, this.newLocation);
+    let tempObservable = this._httpService.addLocation(this.username, this.newLocation);
+    tempObservable.subscribe(resp => {
+      // console.log("#6 back in onAddLocation method", this.username)
+      // this._router.navigate(['user/:'+this.username]);
+      // Refresh the dashboard component and map after saving the new location
+      this._router.navigateByUrl('', {skipLocationChange: true}).then(()=>
+        this._router.navigate(['user/'+this.username]));
+    });
   }
 
   // methods used in drawing a rectangle
