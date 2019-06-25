@@ -1,9 +1,10 @@
 .login {
-    background-image: url(https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?cs=srgb&dl=beach-calm-clouds-457882.jpg&fm=jpg);
+    /* background-image: url(https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?cs=srgb&dl=beach-calm-clouds-457882.jpg&fm=jpg); */
+    background-image: url(src/assets/beach-calm-clouds-457882.jpg);
     background-size: cover;
     padding: 60px;
-    min-height: 800px;
-    font-family:Arial, Helvetica, sans-serif
+    min-height: 900px;
+    font-family: Arial, Helvetica, sans-serif
 }
 h1 {
     font-family: Apple Chancery;

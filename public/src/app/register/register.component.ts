@@ -25,34 +25,39 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister(){
-    if(this.registerUser.password !== this.register.confirm_pass){
+    if(this.registerUser.password !== this.register.confirm_pass || this.registerUser.password.length < 8){
       this.errors = [];
-      this.errors.push("The passwords do not match");
-      console.log("error: ", this.errors)
-    }
-    console.log("#2: In login component ts", this.registerUser);
-    let tempObservable = this._httpService.registerThisUser(this.registerUser);
-    tempObservable.subscribe(data => {
-      console.log(" #6 Register component got the new user", data);
-      this.errors = [];
-      if(data['message'] === 'error'){
-        console.log("This is our error data ", data);
-        var errorsResponse = data['errors']['errors'];
-        for(var key in errorsResponse){
-          var errString = errorsResponse[key]['message'];
-          this.errors.push(errString);
-        }
-        if(data['errors']['code'] === 11000){
-          this.errors.push("This username/email already exist");
-        } 
-      } else {
-        console.log("username from registration: ", data['username']);
-        var username = data['username'];
-        sessionStorage.setItem('username', username);
-        // this._router.navigate(['user/' + data['username']]);
-        this._router.navigate(['user/', username]);
+      if(this.registerUser.password !== this.register.confirm_pass){
+        this.errors.push("The passwords do not match");
       }
-    })
+      if(this.registerUser.password.length < 8){
+        this.errors.push("Your password must contain at least 8 characters");
+      }
+    } else {
+      console.log("#2: In login component ts", this.registerUser);
+      let tempObservable = this._httpService.registerThisUser(this.registerUser);
+      tempObservable.subscribe(data => {
+        console.log(" #6 Register component got the new user", data);
+        this.errors = [];
+        if(data['message'] === 'error'){
+          console.log("This is our error data ", data);
+          var errorsResponse = data['errors']['errors'];
+          for(var key in errorsResponse){
+            var errString = errorsResponse[key]['message'];
+            this.errors.push(errString);
+          }
+          if(data['errors']['code'] === 11000){
+            this.errors.push("This username/email already exist");
+          } 
+        } else {
+          console.log("username from registration: ", data['data']['username']);
+          var username = data['data']['username'];
+          sessionStorage.setItem('username', username);
+          // this._router.navigate(['user/' + data['username']]);
+          this._router.navigate(['user/', username]);
+        }
+      })
+    }
   }
   goHome() {
     this._router.navigate(['']);

@@ -32,5 +32,14 @@ export class HttpService {
     console.log("#3 in http.service.ts location: ", locationToAdd)
     return this._http.put('/userInfo/' + username, locationToAdd);
   }
+  
+  addAttraction(username, coordinates, attractionToAdd){
+    console.log("#3 in http.service.ts attraction: ", username, coordinates, attractionToAdd)
+    return this._http.put('/userInfo/' + username + "/" + coordinates.lat + "/" + coordinates.lng, attractionToAdd);
+  }
 
+  // addAttraction(username, coordinates, attractionToAdd){
+  //   console.log("#3 in http.service.ts attraction: ", username, coordinates, attractionToAdd)
+  //   return this._http.put('/userInfoAttraction/' + username, coordinates, attractionToAdd);
+  // }
 }

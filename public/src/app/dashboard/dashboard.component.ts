@@ -10,8 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 
 export class DashboardComponent implements OnInit {
-  // lat = 43.879078;
-  // lng = -103.4615581;
+  // Initialize the username variable, the errors array, and the selected marker
   username = "";
   errors = [];
   selectedMarker;
@@ -22,12 +21,13 @@ export class DashboardComponent implements OnInit {
   
   // A form to save a new location will show when the showForm variable is set to true
   showForm = false;  
+  // Initialize the newLocation object
   newLocation = {city: '', state: '', country: '', coordinates: {lat: 0, lng: 0}};
 
   // The nested details component will render when the showDetails variable is set to true
   showDetails = false;
-  // The selectedLocation variable will hold the location information when the user clicked on a marker of a saved location
-  selectedLocation={};  
+  // The selectedLocation object will hold the location information when the user clicked on a marker of a saved location
+  selectedLocation = {};  
 
   constructor(
     private _httpService: HttpService,
@@ -60,7 +60,6 @@ export class DashboardComponent implements OnInit {
       // console.log(data['data']['locations'])
       for(var i=0; i<data['data']['locations'].length; i++){
         // console.log(data['data']['locations'][i].coordinates);
-        // this.markers.push(data['data']['locations'][i].coordinates)
         this.markers.push(data['data']['locations'][i].coordinates)
       }         
     })
@@ -87,7 +86,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // Show add location form, pre-populating with the city, state, country, and coordinates of the marked location
+  // Show the save location form, pre-populating with the city, state, country, and coordinates of the marked location
   addMarker(lat: number, lng: number) {
     // Clear the previous details display, if any, when the user selects a new location on the map to add
     this.showDetails = false;
@@ -103,6 +102,8 @@ export class DashboardComponent implements OnInit {
     let tempObservable = this._httpService.getAddress(lat, lng);
     tempObservable.subscribe(data => {
       // Define the city, state, country of the clicked location from the OSM API
+      // Allow for the city to be classified as a town, village or other
+      console.log(data);
       if(data['address'].city){
         this.newLocation.city = data['address'].city;
       }else if(data['address'].town){
@@ -131,8 +132,7 @@ export class DashboardComponent implements OnInit {
     console.log("#2 In onAddLocation method:", this.username, this.newLocation);
     let tempObservable = this._httpService.addLocation(this.username, this.newLocation);
     tempObservable.subscribe(resp => {
-      // console.log("#6 back in onAddLocation method", this.username)
-      // this._router.navigate(['user/:'+this.username]);
+      // console.log("#6 back in onAddLocation method", this.username);
       // Refresh the dashboard component and map after saving the new location
       this._router.navigateByUrl('', {skipLocationChange: true}).then(()=>
         this._router.navigate(['user/'+this.username]));

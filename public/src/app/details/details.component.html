@@ -1,34 +1,34 @@
+<!-- Display the name of the location associated with the marker that the user selected -->
 <div class="justify-content-center align-items-center">
   <h1 class="text-center text-dark pt-3">{{locationToShow.city}}, {{locationToShow.state}}</h1>
   <h2>{{locationToShow.country}}</h2>
 </div>
-
+<!-- Display all of the attractions that the user has saved for the selected location -->
 <div *ngFor='let attraction of locationToShow.attractions'>
   <p>Attraction: {{attraction.name}}</p>
   <p>Rating: {{attraction.rating}}</p>
   <p>Review: {{attraction.review}}</p>
 </div>
-
+<!-- Display a form for the user to save an additional attraction -->
 <div class="row justify-content-center align-items-center">
-  <form (submit)="addAttraction()">
+  <form (submit)="onAddAttraction()">
     <h3 class="text-center text-dark pt-3">Add New Attraction</h3>
-  
+    <!-- Attraction name -->
     <div class="form-group text-center">
-      <input type="text" name="" placeholder="Attraction"
-        class="form-control" />
+      <input [(ngModel)]="newAttraction.name" type="text" name="newAttraction.name" placeholder="Attraction" class="form-control" />
     </div>
- 
+    <!-- User's review of the attraction -->
     <div class="form-group text-center">
-      <input type="text" name="" placeholder="Review" class="form-control" />
+      <input [(ngModel)]="newAttraction.review" type="text" name="newAttraction.review" placeholder="Review" class="form-control" />
     </div>
-  
+    <!-- Stars for the rating entry. The number of stars selected is bound to the rating key of newAttraction object in details.component.ts -->
     <div class="form-group text-center">
       <div class="rating">
-        <input type="radio" name="star" id="star1"><label for="star1" class="form-check"></label>
-        <input type="radio" name="star" id="star2"><label for="star2" class="form-check"></label>
-        <input type="radio" name="star" id="star3"><label for="star3" class="form-check"></label>
-        <input type="radio" name="star" id="star4"><label for="star4" class="form-check"></label>
-        <input type="radio" name="star" id="star5"><label for="star5" class="form-check"></label>
+        <input [(ngModel)]="newAttraction.rating" type="radio" name="star" id="star5" value="5"><label for="star5" class="form-check"></label>
+        <input [(ngModel)]="newAttraction.rating" type="radio" name="star" id="star4" value="4"><label for="star4" class="form-check"></label>
+        <input [(ngModel)]="newAttraction.rating" type="radio" name="star" id="star3" value="3"><label for="star3" class="form-check"></label>
+        <input [(ngModel)]="newAttraction.rating" type="radio" name="star" id="star2" value="2"><label for="star2" class="form-check"></label>
+        <input [(ngModel)]="newAttraction.rating" type="radio" name="star" id="star1" value="1"><label for="star1" class="form-check"></label>        
       </div>
     </div>
 

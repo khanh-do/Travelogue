@@ -57,7 +57,7 @@ module.exports = {
                     username: req.body.username,
                     email: req.body.email,
                     password: hashed_password,
-                })
+                });
                 // console.log('new_user: ', new_user)
                 new_user.save(function (err, user) {
                     if (err) {
@@ -67,7 +67,7 @@ module.exports = {
                         // res.json({message: "Success", data: user, username:req.session.username})
                         res.json({message: "Success", data: user})
                     }
-                })
+                });
             });
     },
 
@@ -84,17 +84,37 @@ module.exports = {
     },
 
     update_user: function(req, res){
-        console.log('#5: in Server Controller', req.params, req.body)
+        console.log('#5: in Server Controller', req.params, req.body);
         User.findOne({username:req.params.username}, function(err, user){
-            user.locations.push(req.body)
+            user.locations.push(req.body);
             user.save(function(err, user){
                 if(err){
                 res.json({message:"error", error:err});
                 } else{
                 res.json({message:"Success", data:user});
                 }
-            })
-            
+            });            
         });
+    },    
+    
+    //Using the coordinates of the location, save the attraction affiliated with that location
+    update_user_location: function(req, res){
+        console.log('#5: in Server Controller', req.params.username, req.params.lat, req.params.lng, req.body);
+        User.findOne({username:req.params.username}, function(err, user){
+            for(var i=0; i<user.locations.length; i++){
+                console.log(user.locations[i].coordinates.lat, user.locations[i].coordinates.lng)
+                if( user.locations[i].coordinates.lat==req.params.lat && user.locations[i].coordinates.lng==req.params.lng )
+                {
+                    user.locations[i].attractions.push(req.body);
+                }                
+            }
+            user.save(function(err, user){
+                if(err){
+                res.json({message:"error", error:err});
+                } else{
+                res.json({message:"Success", data:user});
+                }
+            });            
+        });        
     }
 }

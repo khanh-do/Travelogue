@@ -25,5 +25,15 @@ module.exports = function(app){
         console.log("#4 In routes with username: ", req.params);
         users.update_user(req, res);
     })
+    
+    app.put('/userInfo/:username/:lat/:lng', function (req, res) {
+        console.log("#4 In routes with username and location coordinates: ", req.params.username, req.params.lat, req.params.lng);
+        users.update_user_location(req, res);
+    })
+
+    // app.put('/userInfoAttraction/:username', function (req, res) {
+    //     console.log("#4 In routes with username and location coordinates: ", req.params.username, req.body.coordinates, req.body.attractionToAdd);
+    //     users.update_user_location(req, res);
+    // })
 
 }

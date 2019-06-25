@@ -1,5 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
@@ -15,38 +14,42 @@
 				<a class="nav-link" href="#">Logout</a>
 			</li>
 		</ul>
-
 	</div>
 </nav>
-
 
 <!-- <p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p> -->
 <agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>
 	<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'
 	 [markerDraggable]='true' (markerClick)='selectMarker($event)'>
 	</agm-marker>
-	>
 </agm-map>
 
-
-<div *ngIf='showForm'>
-	<form (submit)="onAddLocation()" class="form-inline text-center">
-		<p>City:</p>
-		<input [(ngModel)]="newLocation.city" type="text" name="newLocation.city" placeholder="City" class="form-control"/>
-		<p>State:</p>
-		<input [(ngModel)]="newLocation.state" type="text" name="newLocation.state" placeholder="State" class="form-control"/>
-		<p>Country:</p>
-		<input [(ngModel)]="newLocation.country" type="text" name="newLocation.country" placeholder="Country" class="form-control"/>
-		<!-- <p>Latitude:</p> -->
+<!-- When the user clicks on a location on the map, display a form to save that location. The form is prepopulated with the location information. -->
+<div id="saveLocationForm" *ngIf='showForm'>
+	<form (submit)="onAddLocation()" class="form-inline">
+		<div class="form-group">
+			<label for="newLocation.city">City: </label>
+			<input [(ngModel)]="newLocation.city" type="text" name="newLocation.city" placeholder="City" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label for="newLocation.state">State: </label>
+			<input [(ngModel)]="newLocation.state" type="text" name="newLocation.state" placeholder="State" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label for="newLocation.country">Country: </label>
+			<input [(ngModel)]="newLocation.country" type="text" name="newLocation.country" placeholder="Country" class="form-control"/>
+		</div>		
+		<!-- Submit the Latitude of the new marker as a hidden field so that the user does not see it -->
 		<input [(ngModel)]="newLocation.coordinates.lat" type="hidden" name="newLocation.coordinates.lat" placeholder="Latitude" class="form-control"/>
-		<!-- <p>Longitude:</p> -->
+		<!-- Submit the Longitude of the new marker as a hidden field so that the user does not see it -->
 		<input [(ngModel)]="newLocation.coordinates.lng" type='hidden' name="newLocation.coordinates.lng" placeholder="Longitude" class="form-control"/>
 		<input type="submit" value="Save This Location" />
 	</form>
 </div>
 
-<div>
+<!-- When the user clicks on the marker for their saved location, the details component for that location will display -->
+<div style="background-color: #E5E3DF;">
 	<!-- <app-details *ngIf="selectedLocation" [locationToShow]="selectedLocation"></app-details> -->
-	<app-details *ngIf="showDetails" [locationToShow]="selectedLocation"></app-details>
+	<app-details *ngIf="showDetails" [locationToShow]="selectedLocation" [username]="username"></app-details>
 </div>
 
