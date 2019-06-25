@@ -199,7 +199,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "agm-map { \r\n    height: 600px; /* height is required */     \r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYSxFQUFFLHVCQUF1QjtBQUMxQyIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImFnbS1tYXAgeyBcclxuICAgIGhlaWdodDogNjAwcHg7IC8qIGhlaWdodCBpcyByZXF1aXJlZCAqLyAgICAgXHJcbn1cclxuIl19 */"
+module.exports = "agm-map { \r\n    height: 700px; /* height is required */     \r\n}\r\n.form-inline > input {\r\n    margin: 20px;\r\n}\r\n.form-group > label {\r\n    margin: 20px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYSxFQUFFLHVCQUF1QjtBQUMxQztBQUNBO0lBQ0ksWUFBWTtBQUNoQjtBQUNBO0lBQ0ksWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImFnbS1tYXAgeyBcclxuICAgIGhlaWdodDogNzAwcHg7IC8qIGhlaWdodCBpcyByZXF1aXJlZCAqLyAgICAgXHJcbn1cclxuLmZvcm0taW5saW5lID4gaW5wdXQge1xyXG4gICAgbWFyZ2luOiAyMHB4O1xyXG59XHJcbi5mb3JtLWdyb3VwID4gbGFiZWwge1xyXG4gICAgbWFyZ2luOiAyMHB4O1xyXG59Il19 */"
 
 /***/ }),
 
@@ -210,7 +210,7 @@ module.exports = "agm-map { \r\n    height: 600px; /* height is required */     
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n\r\n\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Add Destination</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Edit Profile</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Logout</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\r\n\t</div>\r\n</nav>\r\n\r\n\r\n<!-- <p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p> -->\r\n<agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>\r\n\t<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'\r\n\t [markerDraggable]='true' (markerClick)='selectMarker($event)'>\r\n\t</agm-marker>\r\n\t>\r\n</agm-map>\r\n\r\n\r\n<div *ngIf='showForm'>\r\n\t<form (submit)=\"onAddLocation()\" class=\"form-inline text-center\">\r\n\t\t<p>City:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.city\" type=\"text\" name=\"newLocation.city\" placeholder=\"City\" class=\"form-control\"/>\r\n\t\t<p>State:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.state\" type=\"text\" name=\"newLocation.state\" placeholder=\"State\" class=\"form-control\"/>\r\n\t\t<p>Country:</p>\r\n\t\t<input [(ngModel)]=\"newLocation.country\" type=\"text\" name=\"newLocation.country\" placeholder=\"Country\" class=\"form-control\"/>\r\n\t\t<!-- <p>Latitude:</p> -->\r\n\t\t<input [(ngModel)]=\"newLocation.coordinates.lat\" type=\"hidden\" name=\"newLocation.coordinates.lat\" placeholder=\"Latitude\" class=\"form-control\"/>\r\n\t\t<!-- <p>Longitude:</p> -->\r\n\t\t<input [(ngModel)]=\"newLocation.coordinates.lng\" type='hidden' name=\"newLocation.coordinates.lng\" placeholder=\"Longitude\" class=\"form-control\"/>\r\n\t\t<input type=\"submit\" value=\"Save This Location\" />\r\n\t</form>\r\n</div>\r\n\r\n<div>\r\n\t<!-- <app-details *ngIf=\"selectedLocation\" [locationToShow]=\"selectedLocation\"></app-details> -->\r\n\t<app-details *ngIf=\"showDetails\" [locationToShow]=\"selectedLocation\"></app-details>\r\n</div>\r\n\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light fixed-top\">\r\n\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n\t\t<ul class=\"navbar-nav mr-auto\">\r\n\t\t\t<li class=\"nav-item active\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Add Destination</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Edit Profile</a>\r\n\t\t\t</li>\r\n\t\t\t<li class=\"nav-item\">\r\n\t\t\t\t<a class=\"nav-link\" href=\"#\">Logout</a>\r\n\t\t\t</li>\r\n\t\t</ul>\r\n\t</div>\r\n</nav>\r\n\r\n<!-- <p *ngIf='selectedMarker'>Lat: {{ selectedMarker.lat }} Lng: {{ selectedMarker.lng }}</p> -->\r\n<agm-map [latitude]='latitude' [longitude]='longitude' [zoom]='2.5' (mapClick)='addMarker($event.coords.lat, $event.coords.lng)'>\r\n\t<agm-marker *ngFor='let marker of markers' [latitude]='marker.lat' [longitude]='marker.lng' [opacity]='marker.alpha'\r\n\t [markerDraggable]='true' (markerClick)='selectMarker($event)'>\r\n\t</agm-marker>\r\n</agm-map>\r\n\r\n<!-- When the user clicks on a location on the map, display a form to save that location. The form is prepopulated with the location information. -->\r\n<div id=\"saveLocationForm\" *ngIf='showForm'>\r\n\t<form (submit)=\"onAddLocation()\" class=\"form-inline\">\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<label for=\"newLocation.city\">City: </label>\r\n\t\t\t<input [(ngModel)]=\"newLocation.city\" type=\"text\" name=\"newLocation.city\" placeholder=\"City\" class=\"form-control\"/>\r\n\t\t</div>\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<label for=\"newLocation.state\">State: </label>\r\n\t\t\t<input [(ngModel)]=\"newLocation.state\" type=\"text\" name=\"newLocation.state\" placeholder=\"State\" class=\"form-control\"/>\r\n\t\t</div>\r\n\t\t<div class=\"form-group\">\r\n\t\t\t<label for=\"newLocation.country\">Country: </label>\r\n\t\t\t<input [(ngModel)]=\"newLocation.country\" type=\"text\" name=\"newLocation.country\" placeholder=\"Country\" class=\"form-control\"/>\r\n\t\t</div>\t\t\r\n\t\t<!-- Submit the Latitude of the new marker as a hidden field so that the user does not see it -->\r\n\t\t<input [(ngModel)]=\"newLocation.coordinates.lat\" type=\"hidden\" name=\"newLocation.coordinates.lat\" placeholder=\"Latitude\" class=\"form-control\"/>\r\n\t\t<!-- Submit the Longitude of the new marker as a hidden field so that the user does not see it -->\r\n\t\t<input [(ngModel)]=\"newLocation.coordinates.lng\" type='hidden' name=\"newLocation.coordinates.lng\" placeholder=\"Longitude\" class=\"form-control\"/>\r\n\t\t<input type=\"submit\" value=\"Save This Location\" />\r\n\t</form>\r\n</div>\r\n\r\n<!-- When the user clicks on the marker for their saved location, the details component for that location will display -->\r\n<div style=\"background-color: #E5E3DF;\">\r\n\t<!-- <app-details *ngIf=\"selectedLocation\" [locationToShow]=\"selectedLocation\"></app-details> -->\r\n\t<app-details *ngIf=\"showDetails\" [locationToShow]=\"selectedLocation\" [username]=\"username\"></app-details>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -237,8 +237,7 @@ var DashboardComponent = /** @class */ (function () {
         this._httpService = _httpService;
         this._route = _route;
         this._router = _router;
-        // lat = 43.879078;
-        // lng = -103.4615581;
+        // Initialize the username variable, the errors array, and the selected marker
         this.username = "";
         this.errors = [];
         // Declare an empty array to hold coordinates of locations saved by the logged in user (obtained from database) to render markers
@@ -247,10 +246,11 @@ var DashboardComponent = /** @class */ (function () {
         this.userInfo = {};
         // A form to save a new location will show when the showForm variable is set to true
         this.showForm = false;
+        // Initialize the newLocation object
         this.newLocation = { city: '', state: '', country: '', coordinates: { lat: 0, lng: 0 } };
         // The nested details component will render when the showDetails variable is set to true
         this.showDetails = false;
-        // The selectedLocation variable will hold the location information when the user clicked on a marker of a saved location
+        // The selectedLocation object will hold the location information when the user clicked on a marker of a saved location
         this.selectedLocation = {};
     }
     DashboardComponent.prototype.ngOnInit = function () {
@@ -280,7 +280,6 @@ var DashboardComponent = /** @class */ (function () {
             // console.log(data['data']['locations'])
             for (var i = 0; i < data['data']['locations'].length; i++) {
                 // console.log(data['data']['locations'][i].coordinates);
-                // this.markers.push(data['data']['locations'][i].coordinates)
                 _this.markers.push(data['data']['locations'][i].coordinates);
             }
         });
@@ -305,7 +304,7 @@ var DashboardComponent = /** @class */ (function () {
             }
         }
     };
-    // Show add location form, pre-populating with the city, state, country, and coordinates of the marked location
+    // Show the save location form, pre-populating with the city, state, country, and coordinates of the marked location
     DashboardComponent.prototype.addMarker = function (lat, lng) {
         var _this = this;
         // Clear the previous details display, if any, when the user selects a new location on the map to add
@@ -322,6 +321,8 @@ var DashboardComponent = /** @class */ (function () {
         var tempObservable = this._httpService.getAddress(lat, lng);
         tempObservable.subscribe(function (data) {
             // Define the city, state, country of the clicked location from the OSM API
+            // Allow for the city to be classified as a town, village or other
+            console.log(data);
             if (data['address'].city) {
                 _this.newLocation.city = data['address'].city;
             }
@@ -356,8 +357,7 @@ var DashboardComponent = /** @class */ (function () {
         console.log("#2 In onAddLocation method:", this.username, this.newLocation);
         var tempObservable = this._httpService.addLocation(this.username, this.newLocation);
         tempObservable.subscribe(function (resp) {
-            // console.log("#6 back in onAddLocation method", this.username)
-            // this._router.navigate(['user/:'+this.username]);
+            // console.log("#6 back in onAddLocation method", this.username);
             // Refresh the dashboard component and map after saving the new location
             _this._router.navigateByUrl('', { skipLocationChange: true }).then(function () {
                 return _this._router.navigate(['user/' + _this.username]);
@@ -398,7 +398,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".rating{\r\n    -webkit-transform: rotateY(180deg);\r\n            transform: rotateY(180deg);\r\n    display:flex;\r\n}\r\n\r\n.rating input{\r\n\r\n    display:none;\r\n}\r\n\r\n.rating label{\r\n    display:block;\r\n    cursor: pointer;\r\n    width:50px;\r\n    /* background: #ccc; */\r\n}\r\n\r\n.rating label:before{\r\n    content:'\\f005';\r\n    font-family: fontAwesome;\r\n    position: relative;\r\n    display: block;\r\n    font-size:50px;\r\n    color: gray;\r\n}\r\n\r\n.rating label:after{\r\n    content:'\\f005';\r\n    font-family: fontAwesome;\r\n    position: absolute;\r\n    display: block;\r\n    font-size:50px;\r\n    color:yellow;\r\n    top:0;\r\n    opacity: 0;\r\n    transition: .5s;\r\n    text-shadow: 0 2px 5px rgba(0,0,0,.5);\r\n}\r\n\r\n.rating label:hover:after,\r\n.rating label:hover ~ label:after,\r\n.rating input:checked ~ label:after\r\n{\r\n    opacity:1;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGV0YWlscy9kZXRhaWxzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQ0FBMEI7WUFBMUIsMEJBQTBCO0lBQzFCLFlBQVk7QUFDaEI7O0FBRUE7O0lBRUksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLGFBQWE7SUFDYixlQUFlO0lBQ2YsVUFBVTtJQUNWLHNCQUFzQjtBQUMxQjs7QUFFQTtJQUNJLGVBQWU7SUFDZix3QkFBd0I7SUFDeEIsa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxjQUFjO0lBQ2QsV0FBVztBQUNmOztBQUVBO0lBQ0ksZUFBZTtJQUNmLHdCQUF3QjtJQUN4QixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLGNBQWM7SUFDZCxZQUFZO0lBQ1osS0FBSztJQUNMLFVBQVU7SUFDVixlQUFlO0lBQ2YscUNBQXFDO0FBQ3pDOztBQUVBOzs7O0lBSUksU0FBUztBQUNiIiwiZmlsZSI6InNyYy9hcHAvZGV0YWlscy9kZXRhaWxzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucmF0aW5ne1xyXG4gICAgdHJhbnNmb3JtOiByb3RhdGVZKDE4MGRlZyk7XHJcbiAgICBkaXNwbGF5OmZsZXg7XHJcbn1cclxuXHJcbi5yYXRpbmcgaW5wdXR7XHJcblxyXG4gICAgZGlzcGxheTpub25lO1xyXG59XHJcblxyXG4ucmF0aW5nIGxhYmVse1xyXG4gICAgZGlzcGxheTpibG9jaztcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHdpZHRoOjUwcHg7XHJcbiAgICAvKiBiYWNrZ3JvdW5kOiAjY2NjOyAqL1xyXG59XHJcblxyXG4ucmF0aW5nIGxhYmVsOmJlZm9yZXtcclxuICAgIGNvbnRlbnQ6J1xcZjAwNSc7XHJcbiAgICBmb250LWZhbWlseTogZm9udEF3ZXNvbWU7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIGZvbnQtc2l6ZTo1MHB4O1xyXG4gICAgY29sb3I6IGdyYXk7XHJcbn1cclxuXHJcbi5yYXRpbmcgbGFiZWw6YWZ0ZXJ7XHJcbiAgICBjb250ZW50OidcXGYwMDUnO1xyXG4gICAgZm9udC1mYW1pbHk6IGZvbnRBd2Vzb21lO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBmb250LXNpemU6NTBweDtcclxuICAgIGNvbG9yOnllbGxvdztcclxuICAgIHRvcDowO1xyXG4gICAgb3BhY2l0eTogMDtcclxuICAgIHRyYW5zaXRpb246IC41cztcclxuICAgIHRleHQtc2hhZG93OiAwIDJweCA1cHggcmdiYSgwLDAsMCwuNSk7XHJcbn1cclxuXHJcbi5yYXRpbmcgbGFiZWw6aG92ZXI6YWZ0ZXIsXHJcbi5yYXRpbmcgbGFiZWw6aG92ZXIgfiBsYWJlbDphZnRlcixcclxuLnJhdGluZyBpbnB1dDpjaGVja2VkIH4gbGFiZWw6YWZ0ZXJcclxue1xyXG4gICAgb3BhY2l0eToxO1xyXG59Il19 */"
+module.exports = ".rating{\r\n    -webkit-transform: rotateY(180deg);\r\n            transform: rotateY(180deg);\r\n    display:flex;\r\n}\r\n\r\n.rating input{\r\n    display:none;\r\n}\r\n\r\n.rating label{\r\n    display:block;\r\n    cursor: pointer;\r\n    width:50px;\r\n}\r\n\r\n.rating label:before{\r\n    content:'\\f005';\r\n    font-family: fontAwesome;\r\n    position: relative;\r\n    display: block;\r\n    font-size:50px;\r\n    color: gray;\r\n}\r\n\r\n.rating label:after{\r\n    content:'\\f005';\r\n    font-family: fontAwesome;\r\n    position: absolute;\r\n    display: block;\r\n    font-size:50px;\r\n    color:yellow;\r\n    top:0;\r\n    opacity: 0;\r\n    transition: .5s;\r\n    text-shadow: 0 2px 5px rgba(0,0,0,.5);\r\n}\r\n\r\n.rating label:hover:after,\r\n.rating label:hover ~ label:after,\r\n.rating input:checked ~ label:after\r\n{\r\n    opacity:1;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGV0YWlscy9kZXRhaWxzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQ0FBMEI7WUFBMUIsMEJBQTBCO0lBQzFCLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLGVBQWU7SUFDZixVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxlQUFlO0lBQ2Ysd0JBQXdCO0lBQ3hCLGtCQUFrQjtJQUNsQixjQUFjO0lBQ2QsY0FBYztJQUNkLFdBQVc7QUFDZjs7QUFFQTtJQUNJLGVBQWU7SUFDZix3QkFBd0I7SUFDeEIsa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxjQUFjO0lBQ2QsWUFBWTtJQUNaLEtBQUs7SUFDTCxVQUFVO0lBQ1YsZUFBZTtJQUNmLHFDQUFxQztBQUN6Qzs7QUFFQTs7OztJQUlJLFNBQVM7QUFDYiIsImZpbGUiOiJzcmMvYXBwL2RldGFpbHMvZGV0YWlscy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJhdGluZ3tcclxuICAgIHRyYW5zZm9ybTogcm90YXRlWSgxODBkZWcpO1xyXG4gICAgZGlzcGxheTpmbGV4O1xyXG59XHJcblxyXG4ucmF0aW5nIGlucHV0e1xyXG4gICAgZGlzcGxheTpub25lO1xyXG59XHJcblxyXG4ucmF0aW5nIGxhYmVse1xyXG4gICAgZGlzcGxheTpibG9jaztcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHdpZHRoOjUwcHg7XHJcbn1cclxuXHJcbi5yYXRpbmcgbGFiZWw6YmVmb3Jle1xyXG4gICAgY29udGVudDonXFxmMDA1JztcclxuICAgIGZvbnQtZmFtaWx5OiBmb250QXdlc29tZTtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgZm9udC1zaXplOjUwcHg7XHJcbiAgICBjb2xvcjogZ3JheTtcclxufVxyXG5cclxuLnJhdGluZyBsYWJlbDphZnRlcntcclxuICAgIGNvbnRlbnQ6J1xcZjAwNSc7XHJcbiAgICBmb250LWZhbWlseTogZm9udEF3ZXNvbWU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIGZvbnQtc2l6ZTo1MHB4O1xyXG4gICAgY29sb3I6eWVsbG93O1xyXG4gICAgdG9wOjA7XHJcbiAgICBvcGFjaXR5OiAwO1xyXG4gICAgdHJhbnNpdGlvbjogLjVzO1xyXG4gICAgdGV4dC1zaGFkb3c6IDAgMnB4IDVweCByZ2JhKDAsMCwwLC41KTtcclxufVxyXG5cclxuLnJhdGluZyBsYWJlbDpob3ZlcjphZnRlcixcclxuLnJhdGluZyBsYWJlbDpob3ZlciB+IGxhYmVsOmFmdGVyLFxyXG4ucmF0aW5nIGlucHV0OmNoZWNrZWQgfiBsYWJlbDphZnRlclxyXG57XHJcbiAgICBvcGFjaXR5OjE7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -409,7 +409,7 @@ module.exports = ".rating{\r\n    -webkit-transform: rotateY(180deg);\r\n       
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"justify-content-center align-items-center\">\r\n  <h1 class=\"text-center text-dark pt-3\">{{locationToShow.city}}, {{locationToShow.state}}</h1>\r\n  <h2>{{locationToShow.country}}</h2>\r\n</div>\r\n\r\n<div *ngFor='let attraction of locationToShow.attractions'>\r\n  <p>Attraction: {{attraction.name}}</p>\r\n  <p>Rating: {{attraction.rating}}</p>\r\n  <p>Review: {{attraction.review}}</p>\r\n</div>\r\n\r\n<div class=\"row justify-content-center align-items-center\">\r\n  <form (submit)=\"addAttraction()\">\r\n    <h3 class=\"text-center text-dark pt-3\">Add New Attraction</h3>\r\n  \r\n    <div class=\"form-group text-center\">\r\n      <input type=\"text\" name=\"\" placeholder=\"Attraction\"\r\n        class=\"form-control\" />\r\n    </div>\r\n \r\n    <div class=\"form-group text-center\">\r\n      <input type=\"text\" name=\"\" placeholder=\"Review\" class=\"form-control\" />\r\n    </div>\r\n  \r\n    <div class=\"form-group text-center\">\r\n      <div class=\"rating\">\r\n        <input type=\"radio\" name=\"star\" id=\"star1\"><label for=\"star1\" class=\"form-check\"></label>\r\n        <input type=\"radio\" name=\"star\" id=\"star2\"><label for=\"star2\" class=\"form-check\"></label>\r\n        <input type=\"radio\" name=\"star\" id=\"star3\"><label for=\"star3\" class=\"form-check\"></label>\r\n        <input type=\"radio\" name=\"star\" id=\"star4\"><label for=\"star4\" class=\"form-check\"></label>\r\n        <input type=\"radio\" name=\"star\" id=\"star5\"><label for=\"star5\" class=\"form-check\"></label>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"form-group text-center\">\r\n      <input type=\"submit\" value=\"Add\" class=\"btn btn-info btn-md btn-dark\" />\r\n    </div>\r\n  </form>\r\n</div>"
+module.exports = "<!-- Display the name of the location associated with the marker that the user selected -->\r\n<div class=\"justify-content-center align-items-center\">\r\n  <h1 class=\"text-center text-dark pt-3\">{{locationToShow.city}}, {{locationToShow.state}}</h1>\r\n  <h2>{{locationToShow.country}}</h2>\r\n</div>\r\n<!-- Display all of the attractions that the user has saved for the selected location -->\r\n<div *ngFor='let attraction of locationToShow.attractions'>\r\n  <p>Attraction: {{attraction.name}}</p>\r\n  <p>Rating: {{attraction.rating}}</p>\r\n  <p>Review: {{attraction.review}}</p>\r\n</div>\r\n<!-- Display a form for the user to save an additional attraction -->\r\n<div class=\"row justify-content-center align-items-center\">\r\n  <form (submit)=\"onAddAttraction()\">\r\n    <h3 class=\"text-center text-dark pt-3\">Add New Attraction</h3>\r\n    <!-- Attraction name -->\r\n    <div class=\"form-group text-center\">\r\n      <input [(ngModel)]=\"newAttraction.name\" type=\"text\" name=\"newAttraction.name\" placeholder=\"Attraction\" class=\"form-control\" />\r\n    </div>\r\n    <!-- User's review of the attraction -->\r\n    <div class=\"form-group text-center\">\r\n      <input [(ngModel)]=\"newAttraction.review\" type=\"text\" name=\"newAttraction.review\" placeholder=\"Review\" class=\"form-control\" />\r\n    </div>\r\n    <!-- Stars for the rating entry. The number of stars selected is bound to the rating key of newAttraction object in details.component.ts -->\r\n    <div class=\"form-group text-center\">\r\n      <div class=\"rating\">\r\n        <input [(ngModel)]=\"newAttraction.rating\" type=\"radio\" name=\"star\" id=\"star5\" value=\"5\"><label for=\"star5\" class=\"form-check\"></label>\r\n        <input [(ngModel)]=\"newAttraction.rating\" type=\"radio\" name=\"star\" id=\"star4\" value=\"4\"><label for=\"star4\" class=\"form-check\"></label>\r\n        <input [(ngModel)]=\"newAttraction.rating\" type=\"radio\" name=\"star\" id=\"star3\" value=\"3\"><label for=\"star3\" class=\"form-check\"></label>\r\n        <input [(ngModel)]=\"newAttraction.rating\" type=\"radio\" name=\"star\" id=\"star2\" value=\"2\"><label for=\"star2\" class=\"form-check\"></label>\r\n        <input [(ngModel)]=\"newAttraction.rating\" type=\"radio\" name=\"star\" id=\"star1\" value=\"1\"><label for=\"star1\" class=\"form-check\"></label>\r\n        \r\n        <!-- <input type=\"radio\" name=\"star\" id=\"star2\"><label for=\"star2\" class=\"form-check\"></label> -->\r\n        <!-- <input type=\"radio\" name=\"star\" id=\"star3\"><label for=\"star3\" class=\"form-check\"></label> -->\r\n        <!-- <input type=\"radio\" name=\"star\" id=\"star4\"><label for=\"star4\" class=\"form-check\"></label> -->\r\n        <!-- <input type=\"radio\" name=\"star\" id=\"star5\"><label for=\"star5\" class=\"form-check\"></label> -->\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"form-group text-center\">\r\n      <input type=\"submit\" value=\"Add\" class=\"btn btn-info btn-md btn-dark\" />\r\n    </div>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -425,23 +425,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DetailsComponent", function() { return DetailsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../http.service */ "./src/app/http.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 var DetailsComponent = /** @class */ (function () {
-    function DetailsComponent() {
+    function DetailsComponent(_httpService, _route, _router) {
+        this._httpService = _httpService;
+        this._route = _route;
+        this._router = _router;
+        // Initialize an attraction object. This will receive values from the user through the details html component.  
+        this.newAttraction = { name: '', rating: '', review: '' };
+        // Since the rating value is received as a string, initialize a newAttractionToSave object
+        // where the rating value will be converted to an integer. This object will be used to save the new attraction to the database.
+        this.newAttractionToSave = { name: '', rating: 0, review: '' };
+        this.errors = [];
     }
     DetailsComponent.prototype.ngOnInit = function () { };
+    DetailsComponent.prototype.onAddAttraction = function () {
+        var _this = this;
+        console.log("#2 In onAddLocation method:", this.newAttraction);
+        // Set the values of the object to be saved to the values of the bound object, after converting
+        // the rating value to an integer.
+        this.newAttractionToSave.name = this.newAttraction.name;
+        this.newAttractionToSave.rating = parseInt(this.newAttraction.rating, 10);
+        this.newAttractionToSave.review = this.newAttraction.review;
+        console.log("#2 In onAddLocation method:", this.newAttractionToSave);
+        console.log(this.username, this.locationToShow.coordinates);
+        var tempObservable = this._httpService.addAttraction(this.username, this.locationToShow.coordinates, this.newAttractionToSave);
+        tempObservable.subscribe(function (resp) {
+            console.log("#6 back in onAddAttraction method", _this.username);
+            // Refresh the dashboard component and map after saving the new location
+            // this._router.navigateByUrl('', {skipLocationChange: true}).then(()=>
+            // this._router.navigate(['user/'+this.username]));
+        });
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], DetailsComponent.prototype, "locationToShow", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], DetailsComponent.prototype, "username", void 0);
     DetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-details',
             template: __webpack_require__(/*! ./details.component.html */ "./src/app/details/details.component.html"),
             styles: [__webpack_require__(/*! ./details.component.css */ "./src/app/details/details.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], DetailsComponent);
     return DetailsComponent;
 }());
@@ -490,6 +527,15 @@ var HttpService = /** @class */ (function () {
         console.log("#3 in http.service.ts location: ", locationToAdd);
         return this._http.put('/userInfo/' + username, locationToAdd);
     };
+    // This works ABC
+    // addAttraction(username, coordinates, attractionToAdd){
+    //   console.log("#3 in http.service.ts attraction: ", username, coordinates, attractionToAdd)
+    //   return this._http.put('/userInfo/' + username + "/" + coordinates.lat + "/" + coordinates.lng, attractionToAdd);
+    // }
+    HttpService.prototype.addAttraction = function (username, coordinates, attractionToAdd) {
+        console.log("#3 in http.service.ts attraction: ", username, coordinates, attractionToAdd);
+        return this._http.put('/userInfoAttraction/' + username, coordinates, attractionToAdd);
+    };
     HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -510,7 +556,7 @@ var HttpService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".login {\r\n    background-image: url(https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?cs=srgb&dl=beach-calm-clouds-457882.jpg&fm=jpg);\r\n    background-size: cover;\r\n    padding: 60px;\r\n    min-height: 800px;\r\n    font-family:Arial, Helvetica, sans-serif\r\n}\r\nh1 {\r\n    font-family: Apple Chancery;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vbG9naW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHNJQUFzSTtJQUN0SSxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLGlCQUFpQjtJQUNqQjtBQUNKO0FBQ0E7SUFDSSwyQkFBMkI7QUFDL0IiLCJmaWxlIjoic3JjL2FwcC9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmxvZ2luIHtcclxuICAgIGJhY2tncm91bmQtaW1hZ2U6IHVybChodHRwczovL2ltYWdlcy5wZXhlbHMuY29tL3Bob3Rvcy80NTc4ODIvcGV4ZWxzLXBob3RvLTQ1Nzg4Mi5qcGVnP2NzPXNyZ2ImZGw9YmVhY2gtY2FsbS1jbG91ZHMtNDU3ODgyLmpwZyZmbT1qcGcpO1xyXG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAgIHBhZGRpbmc6IDYwcHg7XHJcbiAgICBtaW4taGVpZ2h0OiA4MDBweDtcclxuICAgIGZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWZcclxufVxyXG5oMSB7XHJcbiAgICBmb250LWZhbWlseTogQXBwbGUgQ2hhbmNlcnk7XHJcbn1cclxuXHJcblxyXG4iXX0= */"
+module.exports = ".login {\r\n    /* background-image: url(https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg?cs=srgb&dl=beach-calm-clouds-457882.jpg&fm=jpg); */\r\n    background-image: url('beach-calm-clouds-457882.jpg');\r\n    background-size: cover;\r\n    padding: 60px;\r\n    min-height: 900px;\r\n    font-family: Arial, Helvetica, sans-serif\r\n}\r\nh1 {\r\n    font-family: Apple Chancery;\r\n}\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9naW4vbG9naW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDRJQUE0STtJQUM1SSxxREFBOEQ7SUFDOUQsc0JBQXNCO0lBQ3RCLGFBQWE7SUFDYixpQkFBaUI7SUFDakI7QUFDSjtBQUNBO0lBQ0ksMkJBQTJCO0FBQy9CIiwiZmlsZSI6InNyYy9hcHAvbG9naW4vbG9naW4uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5sb2dpbiB7XHJcbiAgICAvKiBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvNDU3ODgyL3BleGVscy1waG90by00NTc4ODIuanBlZz9jcz1zcmdiJmRsPWJlYWNoLWNhbG0tY2xvdWRzLTQ1Nzg4Mi5qcGcmZm09anBnKTsgKi9cclxuICAgIGJhY2tncm91bmQtaW1hZ2U6IHVybChzcmMvYXNzZXRzL2JlYWNoLWNhbG0tY2xvdWRzLTQ1Nzg4Mi5qcGcpO1xyXG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICAgIHBhZGRpbmc6IDYwcHg7XHJcbiAgICBtaW4taGVpZ2h0OiA5MDBweDtcclxuICAgIGZvbnQtZmFtaWx5OiBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmXHJcbn1cclxuaDEge1xyXG4gICAgZm9udC1mYW1pbHk6IEFwcGxlIENoYW5jZXJ5O1xyXG59XHJcblxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -521,7 +567,7 @@ module.exports = ".login {\r\n    background-image: url(https://images.pexels.co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class=\"login\">\r\n<div class=\"container\">\r\n    <div class=\"row justify-content-md-center\">\r\n      <div class=\"col col-lg-2\">\r\n      </div>\r\n\r\n      <div class=\"col-md-auto\">\r\n          <div class=\"form-group border rounded center bg-white text-dark mt-5\">\r\n              <h3>Login</h3>\r\n            <form (submit)=\"onLogin()\">\r\n\r\n               <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\" class=\"form-control-sm\"/>\r\n              <br>\r\n               <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\" class=\"form-control-sm\"><br> -->\r\n               <!-- <button [routerLink]=\"['/user/:id']\">Login</button>&nbsp;&nbsp; -->\r\n               \r\n               <!-- <input type=\"submit\" value=\"Login\"/>\r\n          \r\n               <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\r\n          \r\n            </form>\r\n          </div>\r\n          \r\n          <div *ngIf='errors.length > 0' style='color:red;'>\r\n            <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n          </div>\r\n      </div>\r\n      <div class=\"col col-lg-2\">\r\n\r\n      </div>\r\n    </div>\r\n</div>\r\n\r\n -->\r\n\r\n<!-- New code starts here: -->\r\n<body>\r\n\t<div class=\"login\">\r\n  \r\n    <!-- <h3 class=\"text-center text-white pt-5\">Login form</h3> -->\r\n    <div class=\"container\">\r\n        <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\r\n            <div id=\"login-column\" class=\"col-md-3\">\r\n                <div class=\"login-box col-md-12\">\r\n                  \r\n                    <form (submit) = \"onLogin()\" >\r\n                        <h1 class=\"text-center\">Travelogue</h1>\r\n                        <h5 class=\"text-center text-dark pt-3\">Log into your Account</h5>\r\n                        <!-- Email -->\r\n                        <div class=\"form-group text-center\">\r\n                            <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\" class=\"form-control\"/>\r\n                          </div>\r\n                        <!-- Password -->\r\n                        <div class=\"form-group text-center\">\r\n                            <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\" class=\"form-control\">\r\n                        </div>\r\n                        <!-- Button -->\r\n                        <div class=\"form-group text-center\">\r\n                            <label for=\"remember-me\" class=\"text-info text-dark\"><span>Remember me</span> <span><input id=\"remember-me\" name=\"remember-me\" type=\"checkbox\"></span></label><br>\r\n                            <input type=\"submit\" value=\"Login\" class=\"btn btn-info btn-md btn-dark\"/>\r\n                            <!-- <input type=\"submit\" name=\"submit\" class=\"btn btn-info btn-md\" value=\"submit\"> -->\r\n                        </div>\r\n\r\n                        <div id=\"register-link\" class=\"text-center\">\r\n                        <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\r\n                        </div>\r\n\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf='errors.length > 0' style='color:red;'>\r\n    <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n  </div>\r\n\r\n\r\n</body>\r\n"
+module.exports = "<!-- <div class=\"login\">\r\n<div class=\"container\">\r\n    <div class=\"row justify-content-md-center\">\r\n      <div class=\"col col-lg-2\">\r\n      </div>\r\n\r\n      <div class=\"col-md-auto\">\r\n          <div class=\"form-group border rounded center bg-white text-dark mt-5\">\r\n              <h3>Login</h3>\r\n            <form (submit)=\"onLogin()\">\r\n\r\n               <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\" class=\"form-control-sm\"/>\r\n              <br>\r\n               <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\" class=\"form-control-sm\"><br> -->\r\n               <!-- <button [routerLink]=\"['/user/:id']\">Login</button>&nbsp;&nbsp; -->\r\n               \r\n               <!-- <input type=\"submit\" value=\"Login\"/>\r\n          \r\n               <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\r\n          \r\n            </form>\r\n          </div>\r\n          \r\n          <div *ngIf='errors.length > 0' style='color:red;'>\r\n            <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n          </div>\r\n      </div>\r\n      <div class=\"col col-lg-2\">\r\n\r\n      </div>\r\n    </div>\r\n</div>\r\n\r\n -->\r\n\r\n\r\n<body>\r\n\t<div class=\"login\">  \r\n    <!-- Login form -->\r\n        <div class=\"container\">\r\n            <div id=\"login-row\" class=\"row justify-content-center align-items-center\">\r\n                <div id=\"login-column\" class=\"col-md-3\">\r\n                    <div class=\"login-box col-md-12\">                  \r\n                        <form (submit) = \"onLogin()\" >\r\n                            <h1 class=\"text-center\">Travelogue</h1>\r\n                            <h5 class=\"text-center text-dark pt-3\">Log into your Account</h5>\r\n                            <!-- Email -->\r\n                            <div class=\"form-group text-center\">\r\n                                <input [(ngModel)]=\"loginUser.email\" type=\"text\" name=\"loginUser.email\" placeholder=\"Email\" class=\"form-control\"/>\r\n                            </div>\r\n                            <!-- Password -->\r\n                            <div class=\"form-group text-center\">\r\n                                <input [(ngModel)]=\"loginUser.password\" type='password' name=\"loginUser.password\" placeholder=\"Password\" class=\"form-control\">\r\n                            </div>\r\n                            <!-- Submit Button -->\r\n                            <div class=\"form-group text-center\">\r\n                                <label for=\"remember-me\" class=\"text-info text-dark\"><span>Remember me</span> <span><input id=\"remember-me\" name=\"remember-me\" type=\"checkbox\"></span></label><br>\r\n                                <input type=\"submit\" value=\"Login\" class=\"btn btn-info btn-md btn-dark\"/>\r\n                                <!-- <input type=\"submit\" name=\"submit\" class=\"btn btn-info btn-md\" value=\"submit\"> -->\r\n                            </div>\r\n                            <!-- Navigate the user to the Registration form if link is selected -->\r\n                            <div id=\"register-link\" class=\"text-center\">\r\n                            <p>Need an account? <a [routerLink]=\"['/register']\">Sign up</a></p>\r\n                            </div>\r\n                        </form>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <!-- If there are errors in the login, display them below the login form -->\r\n        <div class=\"text-center\" *ngIf='errors.length > 0' style='color:red;'>\r\n            <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n        </div>\r\n    </div>\r\n</body>\r\n"
 
 /***/ }),
 
@@ -627,7 +673,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".register {\r\n    background-image: url(https://images.pexels.com/photos/876218/pexels-photo-876218.jpeg?cs=srgb&dl=architecture-benches-buildings-876218.jpg&fm=jpg);\r\n    background-size: cover;\r\n    padding: 60px;\r\n    min-height: 800px;\r\n    font-family:Arial, Helvetica, sans-serif\r\n}\r\nh1 {\r\n    font-family: Apple Chancery;\r\n}\r\n#login-column {\r\n    border: 2px solid rgba(126, 145, 173);\r\n    background-color:rgba(126, 145, 173, 0.5);\r\n    \r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLG1KQUFtSjtJQUNuSixzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLGlCQUFpQjtJQUNqQjtBQUNKO0FBQ0E7SUFDSSwyQkFBMkI7QUFDL0I7QUFDQTtJQUNJLHFDQUFxQztJQUNyQyx5Q0FBeUM7O0FBRTdDIiwiZmlsZSI6InNyYy9hcHAvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5yZWdpc3RlciB7XHJcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoaHR0cHM6Ly9pbWFnZXMucGV4ZWxzLmNvbS9waG90b3MvODc2MjE4L3BleGVscy1waG90by04NzYyMTguanBlZz9jcz1zcmdiJmRsPWFyY2hpdGVjdHVyZS1iZW5jaGVzLWJ1aWxkaW5ncy04NzYyMTguanBnJmZtPWpwZyk7XHJcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gICAgcGFkZGluZzogNjBweDtcclxuICAgIG1pbi1oZWlnaHQ6IDgwMHB4O1xyXG4gICAgZm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZlxyXG59XHJcbmgxIHtcclxuICAgIGZvbnQtZmFtaWx5OiBBcHBsZSBDaGFuY2VyeTtcclxufVxyXG4jbG9naW4tY29sdW1uIHtcclxuICAgIGJvcmRlcjogMnB4IHNvbGlkIHJnYmEoMTI2LCAxNDUsIDE3Myk7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMTI2LCAxNDUsIDE3MywgMC41KTtcclxuICAgIFxyXG59Il19 */"
+module.exports = ".register {\r\n    background-image: url('chicago-water-skyline.jpeg');\r\n    background-size: cover;\r\n    padding: 60px;\r\n    min-height: 900px;\r\n    font-family:Arial, Helvetica, sans-serif\r\n}\r\nh1 {\r\n    font-family: Apple Chancery, \"Times New Roman\", serif;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVnaXN0ZXIvcmVnaXN0ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLG1EQUE0RDtJQUM1RCxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLGlCQUFpQjtJQUNqQjtBQUNKO0FBQ0E7SUFDSSxxREFBcUQ7QUFDekQiLCJmaWxlIjoic3JjL2FwcC9yZWdpc3Rlci9yZWdpc3Rlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJlZ2lzdGVyIHtcclxuICAgIGJhY2tncm91bmQtaW1hZ2U6IHVybChzcmMvYXNzZXRzL2NoaWNhZ28td2F0ZXItc2t5bGluZS5qcGVnKTtcclxuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XHJcbiAgICBwYWRkaW5nOiA2MHB4O1xyXG4gICAgbWluLWhlaWdodDogOTAwcHg7XHJcbiAgICBmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmXHJcbn1cclxuaDEge1xyXG4gICAgZm9udC1mYW1pbHk6IEFwcGxlIENoYW5jZXJ5LCBcIlRpbWVzIE5ldyBSb21hblwiLCBzZXJpZjtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -638,7 +684,7 @@ module.exports = ".register {\r\n    background-image: url(https://images.pexels
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <h3>Register:</h3>\r\n<div class=\"form\">\r\n  <form (submit)=\"onRegister()\">\r\n      <p>First Name:</p>\r\n      <input [(ngModel)]=\"registerUser.first_name\" type=\"text\" name=\"registerUser.first_name\" placeholder=\"First Name\"/>\r\n      <p>Last Name:</p>\r\n     <input [(ngModel)]=\"registerUser.last_name\" type=\"text\" name=\"registerUser.last_name\" placeholder=\"Last Name\"/>\r\n     <p>Username:</p>\r\n     <input [(ngModel)]=\"registerUser.username\" type=\"text\" name=\"registerUser.username\" placeholder=\"Username\"/>\r\n     <p>Email:</p>\r\n     <input [(ngModel)]=\"registerUser.email\" type=\"text\" name=\"registerUser.email\" placeholder=\"Email\"/>\r\n     <p>Password:</p>\r\n     <input [(ngModel)]=\"registerUser.password\" type='password' name=\"registerUser.password\" placeholder=\"Password\"><br>\r\n     <p>Confirm Password:</p>\r\n     <input [(ngModel)]=\"register.confirm_pass\" type=\"password\" name=\"register.confirm_pass\" placeholder=\"Confirm Password\"/>\r\n     <br>\r\n     <br>\r\n     <input type=\"submit\" value=\"Register\"/>\r\n\r\n  </form>\r\n</div>\r\n\r\n<div *ngIf='errors.length > 0' style='color:red;'>\r\n  <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n</div> -->\r\n\r\n<!-- New code starts here: -->\r\n<body>\r\n    <div class=\"register\">\r\n    \r\n      <!-- <h3 class=\"text-center text-white pt-5\">Login form</h3> -->\r\n      <div class=\"container\">\r\n          <div id=\"login-row\" class=\"row justify-content-center align-items-center \">\r\n              <div id=\"login-column\" class=\"col-md-3 rounded\">\r\n                  <div class=\"login-box col-md-12\">\r\n                    \r\n                      <form (submit)=\"onRegister()\" >\r\n                          <h1 class=\"text-center\">Travelogue</h1>\r\n                          <h5 class=\"text-center text-dark pt-3\">Register for an Account</h5>\r\n                          <!-- First Name -->\r\n                          <div class=\"form-group text-center\">\r\n                              <input [(ngModel)]=\"registerUser.first_name\" type=\"text\" name=\"registerUser.first_name\" placeholder=\"First Name\" class=\"form-control\"/>\r\n                            </div>\r\n                          <!-- Last Name -->\r\n                          <div class=\"form-group text-center\">\r\n                              <input [(ngModel)]=\"registerUser.last_name\" type=\"text\" name=\"registerUser.last_name\" placeholder=\"Last Name\" class=\"form-control\"/>\r\n                          </div>\r\n                          <!-- First Username -->\r\n                          <div class=\"form-group text-center\">\r\n                              <input [(ngModel)]=\"registerUser.username\" type=\"text\" name=\"registerUser.username\" placeholder=\"Username\" class=\"form-control\"/>\r\n                            </div>\r\n                          <!-- Email -->\r\n                          <div class=\"form-group text-center\">\r\n                              <input [(ngModel)]=\"registerUser.email\" type=\"text\" name=\"registerUser.email\" placeholder=\"Email\" class=\"form-control\"/>\r\n                            </div>\r\n                          <!-- Password -->\r\n                          <div class=\"form-group text-center\">\r\n                              <input [(ngModel)]=\"registerUser.password\" type='password' name=\"registerUser.password\" placeholder=\"Password\" class=\"form-control\"/>\r\n                            </div>\r\n                          <!-- Confirm Password -->\r\n                          <div class=\"form-group text-center\">\r\n                              <input [(ngModel)]=\"register.confirm_pass\" type=\"password\" name=\"register.confirm_pass\" placeholder=\"Confirm Password\" class=\"form-control\"/>\r\n                            </div>\r\n\r\n                          <!-- Button -->\r\n                          <div class=\"form-group text-center\">\r\n                              <label for=\"remember-me\" class=\"text-info text-light\r\n                              \"><span>Remember me</span> <span><input id=\"remember-me\" name=\"remember-me\" type=\"checkbox\"></span></label><br>\r\n                              <input type=\"submit\" value=\"Register\" class=\"btn btn-info btn-md btn-dark\"/>\r\n                          </div>\r\n                      </form>\r\n                  </div>\r\n              </div>\r\n          </div>\r\n      </div>\r\n      <div class=\"text-center\" *ngIf='errors.length > 0' style='color:red;'>\r\n          <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n        </div>\r\n  </div>\r\n  \r\n\r\n\r\n  </body>"
+module.exports = "<!-- <h3>Register:</h3>\r\n<div class=\"form\">\r\n  <form (submit)=\"onRegister()\">\r\n      <p>First Name:</p>\r\n      <input [(ngModel)]=\"registerUser.first_name\" type=\"text\" name=\"registerUser.first_name\" placeholder=\"First Name\"/>\r\n      <p>Last Name:</p>\r\n     <input [(ngModel)]=\"registerUser.last_name\" type=\"text\" name=\"registerUser.last_name\" placeholder=\"Last Name\"/>\r\n     <p>Username:</p>\r\n     <input [(ngModel)]=\"registerUser.username\" type=\"text\" name=\"registerUser.username\" placeholder=\"Username\"/>\r\n     <p>Email:</p>\r\n     <input [(ngModel)]=\"registerUser.email\" type=\"text\" name=\"registerUser.email\" placeholder=\"Email\"/>\r\n     <p>Password:</p>\r\n     <input [(ngModel)]=\"registerUser.password\" type='password' name=\"registerUser.password\" placeholder=\"Password\"><br>\r\n     <p>Confirm Password:</p>\r\n     <input [(ngModel)]=\"register.confirm_pass\" type=\"password\" name=\"register.confirm_pass\" placeholder=\"Confirm Password\"/>\r\n     <br>\r\n     <br>\r\n     <input type=\"submit\" value=\"Register\"/>\r\n\r\n  </form>\r\n</div>\r\n\r\n<div *ngIf='errors.length > 0' style='color:red;'>\r\n  <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n</div> -->\r\n\r\n\r\n<body>\r\n  <div class=\"register\">    \r\n  <!-- Registration Form -->\r\n    <div class=\"container\">\r\n      <div id=\"login-row\" class=\"row justify-content-center align-items-center \">\r\n        <div id=\"login-column\" class=\"col-md-3 rounded\">\r\n          <div class=\"login-box col-md-12\">\r\n            <form (submit)=\"onRegister()\" >\r\n              <h1 class=\"text-center\">Travelogue</h1>\r\n              <h5 class=\"text-center text-dark pt-3\">Register for an Account</h5>\r\n              <!-- First Name -->\r\n              <div class=\"form-group text-center\">\r\n                <input [(ngModel)]=\"registerUser.first_name\" type=\"text\" name=\"registerUser.first_name\" placeholder=\"First Name\" class=\"form-control\"/>\r\n              </div>\r\n              <!-- Last Name -->\r\n              <div class=\"form-group text-center\">\r\n                <input [(ngModel)]=\"registerUser.last_name\" type=\"text\" name=\"registerUser.last_name\" placeholder=\"Last Name\" class=\"form-control\"/>\r\n              </div>\r\n              <!-- Username -->\r\n              <div class=\"form-group text-center\">\r\n                <input [(ngModel)]=\"registerUser.username\" type=\"text\" name=\"registerUser.username\" placeholder=\"Username\" class=\"form-control\"/>\r\n              </div>\r\n              <!-- Email -->\r\n              <div class=\"form-group text-center\">\r\n                <input [(ngModel)]=\"registerUser.email\" type=\"text\" name=\"registerUser.email\" placeholder=\"Email\" class=\"form-control\"/>\r\n              </div>\r\n              <!-- Password -->\r\n              <div class=\"form-group text-center\">\r\n                <input [(ngModel)]=\"registerUser.password\" type='password' name=\"registerUser.password\" placeholder=\"Password\" class=\"form-control\"/>\r\n              </div>\r\n              <!-- Confirm Password -->\r\n              <div class=\"form-group text-center\">\r\n                <input [(ngModel)]=\"register.confirm_pass\" type=\"password\" name=\"register.confirm_pass\" placeholder=\"Confirm Password\" class=\"form-control\"/>\r\n              </div>\r\n              <!-- Submit Button -->\r\n              <div class=\"form-group text-center\">\r\n                <label for=\"remember-me\" class=\"text-info text-dark\"><span>Remember me</span> <span><input id=\"remember-me\" name=\"remember-me\" type=\"checkbox\"></span></label><br>\r\n                <input type=\"submit\" value=\"Register\" class=\"btn btn-info btn-md btn-dark\"/>\r\n              </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <!-- If there are errors in the registration, display them below the Register form -->\r\n    <div class=\"text-center\" *ngIf='errors.length > 0' style='color:red;'>\r\n      <h6 *ngFor='let error of errors'>{{error}}</h6>\r\n    </div>\r\n  </div>\r\n</body>"
 
 /***/ }),
 
@@ -677,35 +723,41 @@ var RegisterComponent = /** @class */ (function () {
     };
     RegisterComponent.prototype.onRegister = function () {
         var _this = this;
-        if (this.registerUser.password !== this.register.confirm_pass) {
+        if (this.registerUser.password !== this.register.confirm_pass || this.registerUser.password.length < 8) {
             this.errors = [];
-            this.errors.push("The passwords do not match");
-            console.log("error: ", this.errors);
+            if (this.registerUser.password !== this.register.confirm_pass) {
+                this.errors.push("The passwords do not match");
+            }
+            if (this.registerUser.password.length < 8) {
+                this.errors.push("Your password must contain at least 8 characters");
+            }
         }
-        console.log("#2: In login component ts", this.registerUser);
-        var tempObservable = this._httpService.registerThisUser(this.registerUser);
-        tempObservable.subscribe(function (data) {
-            console.log(" #6 Register component got the new user", data);
-            _this.errors = [];
-            if (data['message'] === 'error') {
-                console.log("This is our error data ", data);
-                var errorsResponse = data['errors']['errors'];
-                for (var key in errorsResponse) {
-                    var errString = errorsResponse[key]['message'];
-                    _this.errors.push(errString);
+        else {
+            console.log("#2: In login component ts", this.registerUser);
+            var tempObservable = this._httpService.registerThisUser(this.registerUser);
+            tempObservable.subscribe(function (data) {
+                console.log(" #6 Register component got the new user", data);
+                _this.errors = [];
+                if (data['message'] === 'error') {
+                    console.log("This is our error data ", data);
+                    var errorsResponse = data['errors']['errors'];
+                    for (var key in errorsResponse) {
+                        var errString = errorsResponse[key]['message'];
+                        _this.errors.push(errString);
+                    }
+                    if (data['errors']['code'] === 11000) {
+                        _this.errors.push("This username/email already exist");
+                    }
                 }
-                if (data['errors']['code'] === 11000) {
-                    _this.errors.push("This username/email already exist");
+                else {
+                    console.log("username from registration: ", data['data']['username']);
+                    var username = data['data']['username'];
+                    sessionStorage.setItem('username', username);
+                    // this._router.navigate(['user/' + data['username']]);
+                    _this._router.navigate(['user/', username]);
                 }
-            }
-            else {
-                console.log("username from registration: ", data['username']);
-                var username = data['username'];
-                sessionStorage.setItem('username', username);
-                // this._router.navigate(['user/' + data['username']]);
-                _this._router.navigate(['user/', username]);
-            }
-        });
+            });
+        }
     };
     RegisterComponent.prototype.goHome = function () {
         this._router.navigate(['']);

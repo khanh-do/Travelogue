@@ -48,27 +48,11 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('username', username);
         // then redirect to the user's dashboard
         this._router.navigate(['user/'+ username]);
-      }
-      
-      // if(resp['message'] === 'Error') {
-      //   console.log("This is our error data: ", resp);
-      //     // console.log(resp['errors']['errors']['name']['message'])
-        
-      //     var errorsResponse = resp['errors']['errors']
-
-      //     for(var key in errorsResponse){
-      //       var errString = errorsResponse[key]['message']
-      //       this.errors.push(errString)          
-      //     }  
-            
-      // } else {
-      //   this.goHome();
-      // }
+      }      
     });
   }
 
   goHome() {
     this._router.navigate(['']);
-  }
-  
+  } 
 }

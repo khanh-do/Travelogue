@@ -1,83 +1,50 @@
-<!-- <h3>Register:</h3>
-<div class="form">
-  <form (submit)="onRegister()">
-      <p>First Name:</p>
-      <input [(ngModel)]="registerUser.first_name" type="text" name="registerUser.first_name" placeholder="First Name"/>
-      <p>Last Name:</p>
-     <input [(ngModel)]="registerUser.last_name" type="text" name="registerUser.last_name" placeholder="Last Name"/>
-     <p>Username:</p>
-     <input [(ngModel)]="registerUser.username" type="text" name="registerUser.username" placeholder="Username"/>
-     <p>Email:</p>
-     <input [(ngModel)]="registerUser.email" type="text" name="registerUser.email" placeholder="Email"/>
-     <p>Password:</p>
-     <input [(ngModel)]="registerUser.password" type='password' name="registerUser.password" placeholder="Password"><br>
-     <p>Confirm Password:</p>
-     <input [(ngModel)]="register.confirm_pass" type="password" name="register.confirm_pass" placeholder="Confirm Password"/>
-     <br>
-     <br>
-     <input type="submit" value="Register"/>
-
-  </form>
-</div>
-
-<div *ngIf='errors.length > 0' style='color:red;'>
-  <h6 *ngFor='let error of errors'>{{error}}</h6>
-</div> -->
-
-<!-- New code starts here: -->
 <body>
-    <div class="register">
-    
-      <!-- <h3 class="text-center text-white pt-5">Login form</h3> -->
-      <div class="container">
-          <div id="login-row" class="row justify-content-center align-items-center ">
-              <div id="login-column" class="col-md-3 rounded">
-                  <div class="login-box col-md-12">
-                    
-                      <form (submit)="onRegister()" >
-                          <h1 class="text-center">Travelogue</h1>
-                          <h5 class="text-center text-dark pt-3">Register for an Account</h5>
-                          <!-- First Name -->
-                          <div class="form-group text-center">
-                              <input [(ngModel)]="registerUser.first_name" type="text" name="registerUser.first_name" placeholder="First Name" class="form-control"/>
-                            </div>
-                          <!-- Last Name -->
-                          <div class="form-group text-center">
-                              <input [(ngModel)]="registerUser.last_name" type="text" name="registerUser.last_name" placeholder="Last Name" class="form-control"/>
-                          </div>
-                          <!-- First Username -->
-                          <div class="form-group text-center">
-                              <input [(ngModel)]="registerUser.username" type="text" name="registerUser.username" placeholder="Username" class="form-control"/>
-                            </div>
-                          <!-- Email -->
-                          <div class="form-group text-center">
-                              <input [(ngModel)]="registerUser.email" type="text" name="registerUser.email" placeholder="Email" class="form-control"/>
-                            </div>
-                          <!-- Password -->
-                          <div class="form-group text-center">
-                              <input [(ngModel)]="registerUser.password" type='password' name="registerUser.password" placeholder="Password" class="form-control"/>
-                            </div>
-                          <!-- Confirm Password -->
-                          <div class="form-group text-center">
-                              <input [(ngModel)]="register.confirm_pass" type="password" name="register.confirm_pass" placeholder="Confirm Password" class="form-control"/>
-                            </div>
-
-                          <!-- Button -->
-                          <div class="form-group text-center">
-                              <label for="remember-me" class="text-info text-light
-                              "><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                              <input type="submit" value="Register" class="btn btn-info btn-md btn-dark"/>
-                          </div>
-                      </form>
-                  </div>
+  <div class="register">    
+  <!-- Registration Form -->
+    <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center ">
+        <div id="login-column" class="col-md-3 rounded">
+          <div class="login-box col-md-12">
+            <form (submit)="onRegister()" >
+              <h1 class="text-center">Travelogue</h1>
+              <h5 class="text-center text-dark pt-3">Register for an Account</h5>
+              <!-- First Name -->
+              <div class="form-group text-center">
+                <input [(ngModel)]="registerUser.first_name" type="text" name="registerUser.first_name" placeholder="First Name" class="form-control"/>
               </div>
+              <!-- Last Name -->
+              <div class="form-group text-center">
+                <input [(ngModel)]="registerUser.last_name" type="text" name="registerUser.last_name" placeholder="Last Name" class="form-control"/>
+              </div>
+              <!-- Username -->
+              <div class="form-group text-center">
+                <input [(ngModel)]="registerUser.username" type="text" name="registerUser.username" placeholder="Username" class="form-control"/>
+              </div>
+              <!-- Email -->
+              <div class="form-group text-center">
+                <input [(ngModel)]="registerUser.email" type="text" name="registerUser.email" placeholder="Email" class="form-control"/>
+              </div>
+              <!-- Password -->
+              <div class="form-group text-center">
+                <input [(ngModel)]="registerUser.password" type='password' name="registerUser.password" placeholder="Password" class="form-control"/>
+              </div>
+              <!-- Confirm Password -->
+              <div class="form-group text-center">
+                <input [(ngModel)]="register.confirm_pass" type="password" name="register.confirm_pass" placeholder="Confirm Password" class="form-control"/>
+              </div>
+              <!-- Submit Button -->
+              <div class="form-group text-center">
+                <label for="remember-me" class="text-info text-dark"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                <input type="submit" value="Register" class="btn btn-info btn-md btn-dark"/>
+              </div>
+            </form>
           </div>
-      </div>
-      <div class="text-center" *ngIf='errors.length > 0' style='color:red;'>
-          <h6 *ngFor='let error of errors'>{{error}}</h6>
         </div>
+      </div>
+    </div>
+    <!-- If there are errors in the registration, display them below the Register form -->
+    <div class="text-center" *ngIf='errors.length > 0' style='color:red;'>
+      <h6 *ngFor='let error of errors'>{{error}}</h6>
+    </div>
   </div>
-  
-
-
-  </body>
+</body>

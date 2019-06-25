@@ -1,3 +1,9 @@
 agm-map { 
-    height: 600px; /* height is required */     
+    height: 700px; /* height is required */     
+}
+.form-inline > input {
+    margin: 20px;
+}
+.form-group > label {
+    margin: 20px;
 }
