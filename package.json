@@ -22,7 +22,7 @@
     "jquery": "^3.4.0",
     "mongoose": "^5.5.3",
     "popper": "^1.0.1",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "repository": {
     "type": "git",
